@@ -1,10 +1,23 @@
-<%# app/views/niche/index.html.erb %>
+<%# app/views/niches/index.html.erb %>
 
-<h1>hello from niches index</h1>
+<h1 class="text-center mb-4">Liste des Niches</h1>
 
-<% @niches.each do |nich| %>
-  <p><%= link_to "#{nich.name}", project_nich_path(@project, nich) %></p>
-  <p><%= nich.problem %></p>
-  <p><%= nich.fear %></p>
-  <p><%= nich.desire %></p>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+
+      <% if @niches.any? %>
+        <div class="list-group">
+          <% @niches.each do |nich| %>
+            <div class="list-group-item">
+              <h4><%= link_to nich.name, project_nich_path(@project, nich), class: 'text-decoration-none text-dark' %></h4>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p>Aucune niche trouvée pour ce projet.</p>
+      <% end %>
+
+    </div>
+  </div>
+</div>

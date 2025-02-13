@@ -7,7 +7,6 @@ class NichesController < ApplicationController
   end
 
   def show
-
   end
 
   def new

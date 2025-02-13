@@ -1,7 +1,37 @@
 <%# app/views/projects/show.html.erb %>
-<h1><%= @project.name %></h1>
-<p><%= link_to 'avatar', project_nich_avatar_path(@project, @nich) %></p>
-<p><%= link_to 'offer', project_nich_offer_path(@project, @nich) %></p>
-<p><%= link_to 'result hypothesis', project_nich_hypothesis_result_path(@project, @nich) %></p>
-<p><%= link_to 'message', project_nich_message_path(@project, @nich) %></p>
-<p><%= link_to 'script', project_nich_script_path(@project, @nich) %></p>
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h1 class="text-center mb-4"><%= @project.name %></h1>
+
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Détails du Projet</h4>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <%= link_to 'Voir l\'Avatar', project_nich_avatar_path(@project, @nich), class: 'btn btn-link' %>
+            </li>
+            <li class="list-group-item">
+              <%= link_to 'Voir l\'Offre', project_nich_offer_path(@project, @nich), class: 'btn btn-link' %>
+            </li>
+            <li class="list-group-item">
+              <%= link_to 'Résultats d\'Hypothèses', project_nich_hypothesis_result_path(@project, @nich), class: 'btn btn-link' %>
+            </li>
+            <li class="list-group-item">
+              <%= link_to 'Voir le Message', project_nich_message_path(@project, @nich), class: 'btn btn-link' %>
+            </li>
+            <li class="list-group-item">
+              <%= link_to 'Voir le Script', project_nich_script_path(@project, @nich), class: 'btn btn-link' %>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Ajout du bouton de navigation vers la page d'accueil -->
+      <div class="text-center mt-4">
+        <%= link_to 'Retour à l\'accueil', root_path, class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+</div>

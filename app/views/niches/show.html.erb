@@ -1,6 +1,26 @@
-<%# app/views/niche/show.html.erb %>
-<h1><%= @nich.name %></h1>
-<p><%= @nich.problem %></p>
-<p><%= @nich.fear %></p>
-<p><%= @nich.desire %></p>
-<%= button_to 'Select', select_project_nich_path(@project, @nich), method: :patch, class: 'btn btn-primary' %>
+<%# app/views/niches/show.html.erb %>
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h1 class="text-center mb-4"><%= @nich.name %></h1>
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Problème</h5>
+          <p class="card-text"><%= @nich.problem %></p>
+
+          <h5 class="card-title">Peur</h5>
+          <p class="card-text"><%= @nich.fear %></p>
+
+          <h5 class="card-title">Désir</h5>
+          <p class="card-text"><%= @nich.desire %></p>
+
+          <div class="mt-4">
+            <%= button_to 'Sélectionner cette niche', select_project_nich_path(@project, @nich), method: :patch, class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

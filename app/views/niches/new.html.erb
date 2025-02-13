@@ -1,15 +1,41 @@
-<%# app/views/niche/new.html.erb %>
-<h1>hello form new niches</h1>
+<%# app/views/niches/new.html.erb %>
 
-<%= @project.name %>
+<h1 class="text-center mb-4">Création d'une nouvelle niche</h1>
 
-<%= simple_form_for [@project, @nich] do |f| %>
-  <%= f.input :name %>
-  <%= f.submit 'validé' %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
 
-<% @niches.each do |niche| %>
-  <p><%= niche.name %></p>
-<% end %>
+      <!-- Affichage du nom du projet -->
+      <h3 class="mb-4">Projet : <%= @project.name %></h3>
 
-<%= link_to "Générer l'hypothèse de business", project_niches_path(@project), class: 'btn btn-primary' %>
+      <!-- Formulaire de création de niche -->
+      <%= simple_form_for [@project, @nich], html: { class: 'needs-validation', novalidate: true } do |f| %>
+        <div class="form-group">
+          <%= f.input :name, label: 'Nom de la niche', input_html: { class: 'form-control' } %>
+        </div>
+        <div class="form-group">
+          <%= f.submit 'Valider', class: 'btn btn-success btn-block' %>
+        </div>
+      <% end %>
+
+      <!-- Affichage des niches existantes pour le projet -->
+      <h4 class="mt-5">Niches existantes pour ce projet :</h4>
+      <% if @niches.any? %>
+        <ul class="list-group mt-3">
+          <% @niches.each do |niche| %>
+            <li class="list-group-item"><%= niche.name %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="mt-3">Aucune niche existante pour ce projet.</p>
+      <% end %>
+
+      <!-- Lien pour générer l'hypothèse de business -->
+      <div class="mt-4">
+        <%= link_to "Générer l'hypothèse de business", project_niches_path(@project), class: 'btn btn-primary btn-block' %>
+      </div>
+
+    </div>
+  </div>
+</div>

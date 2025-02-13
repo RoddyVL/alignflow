@@ -1,2 +1,20 @@
-<p><%= @offer.question %></p>
-<p><%= @offer.answer%></p>
+<%# app/views/offers/show.html.erb %>
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card">
+        <div class="card-header text-center bg-success text-white">
+          <h3>Détails de l'Offre</h3>
+        </div>
+        <div class="card-body">
+          <h4 class="mb-4">Question</h4>
+          <p class="border p-3 rounded bg-light mb-3"><%= @offer.question %></p>
+
+          <h4 class="mb-4">Réponse</h4>
+          <p class="border p-3 rounded bg-light"><%= @offer.answer %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

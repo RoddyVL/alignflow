@@ -1,17 +1,10 @@
 <%# app/views/avatars/show.html.erb %>
 
-<div class="container my-5">
-  <div class="row">
-    <div class="col-md-8 offset-md-2">
-      <h1 class="text-center mb-4"><%= @avatar.name %></h1>
-
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Description de l'Avatar</h4>
-          <p><%= @avatar.description %></p>
-        </div>
-      </div>
-
-    </div>
+<div class="items-grid">
+  <div>
+    <%= render 'projects/items' %>
+  </div>
+  <div>
+    <%= render 'avatar' %>
   </div>
 </div>

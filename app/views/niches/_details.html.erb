@@ -1,0 +1,17 @@
+<%# app/views/niches/_details.html.erb %>
+<%= turbo_frame_tag :nich_details do %>
+  <div class="details">
+    <h1 class="text-center mb-4"><%= @nich.name %></h1>
+
+      <h5>Problème</h5>
+      <p><%= @nich.problem %></p>
+
+      <h5>Peur</h5>
+      <p><%= @nich.fear %></p>
+
+      <h5>Désir</h5>
+      <p><%= @nich.desire %></p>
+
+    <%= button_to 'Sélectionner cette niche', select_project_nich_path(@project, @nich), method: :patch, class: 'btn btn-primary' %>
+  </div>
+<% end %>

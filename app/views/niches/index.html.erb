@@ -2,22 +2,7 @@
 
 <h1 class="text-center mb-4">Liste des Niches</h1>
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-8 offset-md-2">
-
-      <% if @niches.any? %>
-        <div class="list-group">
-          <% @niches.each do |nich| %>
-            <div class="list-group-item">
-              <h4><%= link_to nich.name, project_nich_path(@project, nich), class: 'text-decoration-none text-dark' %></h4>
-            </div>
-          <% end %>
-        </div>
-      <% else %>
-        <p>Aucune niche trouvée pour ce projet.</p>
-      <% end %>
-
-    </div>
-  </div>
+<div class="nich-grid">
+  <%= render 'niches', niches: @niches, selected_nich: nil  %>
+  <div class="text-secondary">Select a nich to view details</div>
 </div>

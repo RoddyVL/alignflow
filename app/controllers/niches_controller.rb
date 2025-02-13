@@ -1,5 +1,5 @@
 class NichesController < ApplicationController
-  before_action :set_project, only: [:new, :create, :index, :show]
+  before_action :set_project, only: [:new, :create, :index, :show, :select]
   before_action :set_nich, only: [:select, :show]
 
   def index
@@ -7,6 +7,7 @@ class NichesController < ApplicationController
   end
 
   def show
+    @niches = @project.niches
   end
 
   def new
@@ -26,6 +27,7 @@ class NichesController < ApplicationController
 
   def select
     @nich.update(status: Nich::SELECTED)
+    redirect_to project_path(@project), notice: "Niche sélectionnée avec succès."
   end
 
   private

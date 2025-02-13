@@ -1,0 +1,11 @@
+<%# app/views/projects/index.html.erb %>
+<h1>Mes projets </h1>
+
+<%= simple_form_for @project do |f| %>
+  <%= f.input :name %>
+  <%= f.submit 'créer mon projet' %>
+<% end %>
+
+<% @niches.each do |niche| %>
+<%= link_to "#{niche.name}", project_path(niche.project), class: "btn" %>
+<% end %>

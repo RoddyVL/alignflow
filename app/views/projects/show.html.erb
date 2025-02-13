@@ -1,0 +1,7 @@
+<%# app/views/projects/show.html.erb %>
+<h1><%= @project.name %></h1>
+<p><%= link_to 'avatar', project_nich_avatar_path(@project, @nich) %></p>
+<p><%= link_to 'offer', project_nich_offer_path(@project, @nich) %></p>
+<p><%= link_to 'result hypothesis', project_nich_hypothesis_result_path(@project, @nich) %></p>
+<p><%= link_to 'message', project_nich_message_path(@project, @nich) %></p>
+<p><%= link_to 'script', project_nich_script_path(@project, @nich) %></p>

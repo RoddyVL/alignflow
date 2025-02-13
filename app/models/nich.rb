@@ -1,10 +1,10 @@
 class Nich < ApplicationRecord
   belongs_to :project
-  has_many :avatars, dependent: :destroy
-  has_many :offers, dependent: :destroy
-  has_many :hypothesis_results, dependent: :destroy
-  has_many :messages, dependent: :destroy
-  has_many :scripts, dependent: :destroy
+  has_one :avatar, dependent: :destroy
+  has_one :offer, dependent: :destroy
+  has_one :hypothesis_result, dependent: :destroy
+  has_one :message, dependent: :destroy
+  has_one :script, dependent: :destroy
   has_many :ai_responses, dependent: :destroy
 
   validates :name, presence: true

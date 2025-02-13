@@ -1,0 +1,6 @@
+<%# app/views/niche/show.html.erb %>
+<h1><%= @nich.name %></h1>
+<p><%= @nich.problem %></p>
+<p><%= @nich.fear %></p>
+<p><%= @nich.desire %></p>
+<%= button_to 'Select', select_project_nich_path(@project, @nich), method: :patch, class: 'btn btn-primary' %>

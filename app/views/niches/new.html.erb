@@ -1,0 +1,15 @@
+<%# app/views/niche/new.html.erb %>
+<h1>hello form new niches</h1>
+
+<%= @project.name %>
+
+<%= simple_form_for [@project, @nich] do |f| %>
+  <%= f.input :name %>
+  <%= f.submit 'validé' %>
+<% end %>
+
+<% @niches.each do |niche| %>
+  <p><%= niche.name %></p>
+<% end %>
+
+<%= link_to "Générer l'hypothèse de business", project_niches_path(@project), class: 'btn btn-primary' %>

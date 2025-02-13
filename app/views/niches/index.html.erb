@@ -1,0 +1,10 @@
+<%# app/views/niche/index.html.erb %>
+
+<h1>hello from niches index</h1>
+
+<% @niches.each do |nich| %>
+  <p><%= link_to "#{nich.name}", project_nich_path(@project, nich) %></p>
+  <p><%= nich.problem %></p>
+  <p><%= nich.fear %></p>
+  <p><%= nich.desire %></p>
+<% end %>

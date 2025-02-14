@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       member do
         patch :select
       end
+      post :generate_ai_data, on: :collection
       resources :avatars, only: [:show]
       resources :offers, only: [:show]
       resources :hypothesis_results, only: [:show]

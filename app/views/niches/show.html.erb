@@ -5,3 +5,7 @@
   <%= render 'niches', niches: @niches, selected_nich: @nich %>
   <%= render 'details', nich: @nich %>
 </div>
+
+<% if @nich.ai_status == "error" %>
+  <p class="text-danger">Erreur lors de la génération. <%= link_to "Réessayer", generate_ai_data_project_niches_path(@project), method: :post, class: "btn btn-danger" %></p>
+<% end %>

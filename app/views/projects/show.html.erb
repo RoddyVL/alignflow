@@ -1,5 +1,9 @@
 <%# app/views/projects/show.html.erb %>
-<div class="items-grid">
-  <%= render 'items'%>
-  <div class="text-secondary">Select a folder to view details</div>
-</div>
+<%= turbo_frame_tag "project_#{@project.id}" do %>
+
+  <div class="items-grid">
+    <%= render 'items', project: @project%>
+    <div class="text-secondary">Select a folder to view details</div>
+  </div>
+
+<% end %>

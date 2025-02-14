@@ -1,6 +1,6 @@
 class NichesController < ApplicationController
-  before_action :set_project, only: [:new, :create, :index, :show, :select]
-  before_action :set_nich, only: [:select, :show]
+  before_action :set_project
+  before_action :set_nich, only: %I[select show]
 
   def index
     @niches = @project.niches
@@ -28,6 +28,14 @@ class NichesController < ApplicationController
   def select
     @nich.update(status: Nich::SELECTED)
     redirect_to project_path(@project), notice: "Niche sélectionnée avec succès."
+  end
+
+  def generate_ai_data
+    @nich = @project.niches.first
+    @project.niches.each do |nich|
+      NichProblemGeneratorJob.perform_later(nich.id)
+    end
+    redirect_to project_nich_path(@project, @nich), notice: "Génération en cours..."
   end
 
   private

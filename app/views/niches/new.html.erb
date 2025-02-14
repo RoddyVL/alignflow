@@ -33,7 +33,9 @@
 
       <!-- Lien pour générer l'hypothèse de business -->
       <div class="mt-4">
-        <%= link_to "Générer l'hypothèse de business", project_niches_path(@project), class: 'btn btn-primary btn-block' %>
+        <%= link_to "démarrer l'étude de marché", generate_ai_data_project_niches_path(@project), method: :post,
+            data: { turbo_method: :post },
+            class: 'btn btn-primary btn-block' %>
       </div>
 
     </div>

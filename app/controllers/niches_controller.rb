@@ -27,7 +27,12 @@ class NichesController < ApplicationController
 
   def select
     @nich.update(status: Nich::SELECTED)
-    redirect_to project_path(@project), notice: "Niche sélectionnée avec succès."
+      
+    flash[:notice] = "Nous générons votre hypothèse de business..."
+
+    GenerateContentJob.perform_later(@nich)
+
+     redirect_to project_path(@nich.project)
   end
 
   def generate_ai_data

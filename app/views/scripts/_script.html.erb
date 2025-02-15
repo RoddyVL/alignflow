@@ -4,7 +4,9 @@
     <div class="card-body d-flex flex-column">
       <h3 class="card-title text-center">Détails du Script</h3>
       <h4 class="card-subtitle mb-3">Question</h4>
-      <p class="card-text flex-grow-1"><%= @script.question %></p>
+      <% if @script %>
+        <p class="card-text flex-grow-1"><%= @script.question %></p>
+      <% end %>
     </div>
   </div>
 <% end %>

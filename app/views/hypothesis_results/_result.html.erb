@@ -5,13 +5,11 @@
   <div class="card-body d-flex flex-column">
     <div class="card mb-3">
       <div class="card-body">
-        <h4 class="card-title text-primary">Question</h4>
-        <p class="card-text border p-3 rounded bg-light">
-          <%= @hypothesis.question %>
-        </p>
         <h4 class="card-title text-success mt-3">Réponse</h4>
         <p class="card-text border p-3 rounded bg-light">
-          <%= @hypothesis.answer %>
+          <% if @result %>
+            <%= @result.answer %>
+          <% end %>
         </p>
       </div>
     </div>

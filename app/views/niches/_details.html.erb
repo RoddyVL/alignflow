@@ -1,7 +1,7 @@
 <%# app/views/niches/_details.html.erb %>
 <%= turbo_frame_tag :nich_details do %>
   <div id="<%= dom_id(nich) %>">
-  <%= turbo_stream_from dom_id(nich) %>
+  <%= turbo_stream_from "nich_#{nich.id}"%>
     <div class="details">
       <h1 class="text-center mb-4"><%= @nich.name %></h1>
 

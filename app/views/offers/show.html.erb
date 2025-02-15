@@ -1,10 +1,12 @@
 <%# app/views/offers/show.html.erb %>
-
-<div class="items-grid">
-  <div>
-    <%= render 'projects/items' %>
-  </div>
-  <div>
-    <%= render 'offer' %>
+<div id="<%= dom_id(@offer) %>">
+  <%= turbo_stream_from "offer_#{@offer.id}" %>
+  <div class="items-grid">
+    <div>
+      <%= render 'projects/items' %>
+    </div>
+    <div id="offer_<%= @offer.id %>">
+      <%= render 'offer' %>
+    </div>
   </div>
 </div>

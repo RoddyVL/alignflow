@@ -6,9 +6,10 @@
   </div>
   <div class="card-body d-flex flex-column">
     <h4 class="mb-3">Question</h4>
-    <p class="border p-3 rounded bg-light flex-grow-1"><%= @message.question %></p>
-
-    <h4 class="mb-3">Réponse</h4>
-    <p class="border p-3 rounded bg-light flex-grow-1"><%= @message.answer %></p>
+    <% if @message %>
+      <p class="border p-3 rounded bg-light flex-grow-1"><%= @message.question %></p>
+      <h4 class="mb-3">Réponse</h4>
+      <p class="border p-3 rounded bg-light flex-grow-1"><%= @message.answer %></p>
+    <% end%>
   </div>
 </div>

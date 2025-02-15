@@ -6,13 +6,14 @@
           <h3>Détails de l'Offre</h3>
         </div>
         <div class="card-body overflow-auto">
-          <h4 class="mb-4">Question</h4>
-          <p class="border p-3 rounded bg-light mb-3"><%= @offer.question %></p>
-          <h4 class="mb-4">Réponse</h4>
-          <p class="border p-3 rounded bg-light"><%= @offer.answer %></p>
+          <% if @offer %>
+            <h4 class="mb-4">Question</h4>
+            <p class="border p-3 rounded bg-light mb-3"><%= @offer.question %></p>
+            <h4 class="mb-4">Réponse</h4>
+            <p class="border p-3 rounded bg-light"><%= @offer.answer %></p>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
 </div>
-

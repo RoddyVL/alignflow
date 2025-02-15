@@ -26,8 +26,8 @@ class NichesController < ApplicationController
   end
 
   def select
-    @nich.update(status: Nich::SELECTED)
-      
+      @nich.update(status: Nich::SELECTED)
+
     flash[:notice] = "Nous générons votre hypothèse de business..."
 
     GenerateContentJob.perform_later(@nich)

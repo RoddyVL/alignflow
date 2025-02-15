@@ -1,12 +1,23 @@
 <%# app/views/avatars/show.html.erb %>
-<div id="<%= dom_id(@avatar) %>">
-  <%= turbo_stream_from "avatar_#{@avatar.id}" %>
-  <div class="items-grid">
-    <div>
-      <%= render 'projects/items' %>
-    </div>
-    <div id="avatar_<%= @avatar.id %>">
-      <%= render 'avatar' %>
+<% if @avatar %>
+  <div id="<%= dom_id(@avatar) %>">
+    <%= turbo_stream_from "avatar_#{@avatar.id}" %>
+    <div class="items-grid">
+      <div>
+        <%= render 'projects/items' %>
+      </div>
+      <div id="avatar_<%= @avatar.id %>">
+        <%= render 'avatar' %>
+      </div>
     </div>
   </div>
-</div>
+  <% else %>
+  <div class="items-grid">
+      <div>
+        <%= render 'projects/items' %>
+      </div>
+      <div>
+        <%= render 'avatar' %>
+      </div>
+    </div>
+<% end %>

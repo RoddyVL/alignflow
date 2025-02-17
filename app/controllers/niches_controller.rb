@@ -25,22 +25,20 @@ class NichesController < ApplicationController
     end
   end
 
-  def select
-      @nich.update(status: Nich::SELECTED)
-
-    flash[:notice] = "Nous générons votre hypothèse de business..."
-
-    GenerateContentJob.perform_later(@nich)
-
-     redirect_to project_path(@nich.project)
-  end
-
   def generate_ai_data
     @nich = @project.niches.first
     @project.niches.each do |nich|
       NichProblemGeneratorJob.perform_later(nich.id)
     end
-    redirect_to project_nich_path(@project, @nich), notice: "Génération en cours..."
+    redirect_to project_nich_path(@project, @nich)
+  end
+
+  def select
+      @nich.update(status: Nich::SELECTED)
+
+    flash[:notice] = "Nous générons votre hypothèse de business..."
+
+      redirect_to project_path(@nich.project)
   end
 
   private

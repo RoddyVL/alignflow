@@ -1,9 +1,5 @@
 <%# app/views/niches/index.html.erb %>
-
-<h1 class="text-center mb-4">Liste des Niches</h1>
-
 <div class="nich-grid">
   <%= render 'niches', niches: @niches, selected_nich: nil  %>
   <div class="text-secondary">Select an item to view details</div>
 </div>
-  

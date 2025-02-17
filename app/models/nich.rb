@@ -16,6 +16,10 @@ class Nich < ApplicationRecord
   SELECTED = 1
 
   private
+
+  def fetch_ai_answer
+    NichProblemGeneratorJob.perform_later(id)
+  end
   # Méthode pour vérifier si la niche est sélectionnée
   def selected?
     status == SELECTED

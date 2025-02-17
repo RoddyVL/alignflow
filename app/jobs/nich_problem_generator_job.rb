@@ -3,34 +3,32 @@ class NichProblemGeneratorJob < ApplicationJob
 
   def perform(nich_id)
     nich = Nich.find_by(id: nich_id)
+
     return unless nich
 
     client = OpenAI::Client.new(access_token: ENV["OPENAI_ACCESS_TOKEN"])
 
-    begin
       # Générer chaque réponse avec une requête séparée
       nich.update(ai_status: 1)
 
-      problem_response = generate_response(client, "Quels sont les principaux problèmes rencontrés par les personnes dans cette niche ?", nich.name)
-      fear_response = generate_response(client, "Quelles sont les plus grandes peurs des personnes dans cette niche ?", nich.name)
-      desire_response = generate_response(client, "Quels sont les désirs et objectifs principaux des personnes dans cette niche ?", nich.name)
+      problem_response = generate_response(client, "En un mot décris le plus grand problème de cette niche", nich.name)
+      fear_response = generate_response(client, "En un mot décris quelle est la plus grande peur des personnes dans cette niche ?", nich.name)
+      desire_response = generate_response(client, "En un mot quels est le plus grand désir des personnes dans cette niche ?", nich.name)
 
       # Mettre à jour la niche avec les résultats
-      nich.update(problem: problem_response, fear: fear_response, desire: desire_response, ai_status: "completed")
-
-    rescue => e
-      Rails.logger.error("Erreur lors de la génération IA : #{e.message}")
-      nich.update(ai_status: "error")
-    end
-
-    Turbo::StreamsChannel.broadcast_update_to(
+    nich.update(problem: problem_response, fear: fear_response, desire: desire_response, ai_status: "completed")
+    puts 'NIIIIIIIIIIICHHHHHHEEEEE UPPPPPDDDDDDAAAAAAATTTTTTTEEEEEEDDDD 495498549599'
+    puts 'STAAAAAAAAAAARRRRRRRRRRTTTTTTTTTT  BBBBBBBRRRRRRROOOOOOOOOOAAAAAAADDDCCCCCCCAAAAST495498549599'
+    Turbo::StreamsChannel.broadcast_replace_to(
       "nich_#{nich.id}",
       target: "nich_#{nich.id}",
-      partial: "niches/details", locals: { nich: nich })
+      partial: "niches/details", locals: { nich: nich, project: nich.project })
+      puts 'update done in real time'
   end
 
 
   private
+
 
   def generate_response(client, prompt, nich_name)
     response = client.chat(

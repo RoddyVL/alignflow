@@ -1,20 +1,17 @@
 <%# app/views/niches/_details.html.erb %>
-<%# <%= turbo_frame_tag :nich_details do %> 
-  <%# <div id="<%= dom_id(nich) %>">
-  <%# <%= turbo_stream_from "nich_#{nich.id}"%>
-    <div class="details">
-      <h1 class="text-center mb-4"><%= @nich.name %></h1>
+<% return unless nich.present? %> <!-- Évite de charger si nich est nil -->
 
-        <h5>Problème</h5>
-        <p><%= @nich.problem %></p>
+<div id="<%= dom_id(nich) %>">
+  <%= turbo_stream_from dom_id(nich) %>
+  <div class="details">
+      <h5>Problème</h5>
+      <p><%= nich.problem || '...'%></p>
 
-        <h5>Peur</h5>
-        <p><%= @nich.fear %></p>
+      <h5>Peur</h5>
+      <p><%= nich.fear || '...'%></p>
 
-        <h5>Désir</h5>
-        <p><%= @nich.desire %></p>
-
-      <%= button_to 'Sélectionner cette niche', select_project_nich_path(@project, @nich), method: :patch, class: 'btn btn-primary', data: { turbo: false } %>
+      <h5>Désir</h5>
+      <p><%= nich.desire || '...' %></p>
     </div>
- </div>
-<%# <% end %>
+    <%= button_to 'Sélectionner cette niche', select_project_nich_path(project, nich), method: :patch, class: 'btn btn-primary', data: { turbo: false } %>
+</div>

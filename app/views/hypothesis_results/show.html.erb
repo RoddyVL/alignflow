@@ -1,23 +1,12 @@
 <%# app/views/hypothesis_results/show.html.erb %>
-<% if @result %>
-  <div id="<%= dom_id(@result) %>">
-    <%= turbo_stream_from "result_#{@result.id}" %>
-    <div class="items-grid">
-      <div>
-        <%= render 'projects/items' %>
-      </div>
-      <div id="result_<%= @result.id %>">
-        <%= render 'result', hypothesis_result: @result %>
-      </div>
+
+
+  <div class="items-grid">
+    <div>
+      <%= render 'projects/items' %>
+    </div>
+    <div id="result_<%= @result.id %>">
+      <%= render 'result', result: @result %>
     </div>
   </div>
-  <% else %>
-    <div class="items-grid">
-      <div>
-        <%= render 'projects/items' %>
-      </div>
-      <div >
-        <%= render 'result' %>
-      </div>
-    </div>
-<% end %>
+</div>

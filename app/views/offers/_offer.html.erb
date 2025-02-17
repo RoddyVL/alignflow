@@ -1,19 +1,44 @@
-<div class="container-fluid h-100 w-100">
-  <div class="row h-100">
-    <div class="col-12 d-flex flex-column h-100">
-      <div class="card h-100 w-100 shadow-lg">
-        <div class="card-header text-center bg-primary text-white">
-          <h3>Détails de l'Offre</h3>
-        </div>
-        <div class="card-body overflow-auto">
-          <% if @offer %>
-            <h4 class="mb-4">Question</h4>
-            <p class="border p-3 rounded bg-light mb-3"><%= @offer.question %></p>
-            <h4 class="mb-4">Réponse</h4>
-            <p class="border p-3 rounded bg-light"><%= @offer.answer %></p>
-          <% end %>
+<% if offer %>
+<div id="<%= dom_id(offer) %>">
+
+  <%= turbo_stream_from dom_id(offer) %>
+  <div class="container-fluid h-100 w-100">
+    <div class="row h-100">
+      <div class="col-12 d-flex flex-column h-100">
+        <div class="card h-100 w-100 shadow-lg">
+          <div class="card-header text-center bg-primary text-white">
+
+            <h3>Détails de l'Offre</h3>
+          </div>
+          <div class="card-body overflow-auto">
+            <% if offer %>
+              <p class="border p-3 rounded bg-light"><%= offer.answer || '...' %></p>
+            <% end %>
+
+          </div>
         </div>
       </div>
     </div>
   </div>
+
 </div>
+<% else %>
+  <div class="container-fluid h-100 w-100">
+    <div class="row h-100">
+      <div class="col-12 d-flex flex-column h-100">
+        <div class="card h-100 w-100 shadow-lg">
+          <div class="card-header text-center bg-primary text-white">
+
+            <h3>Détails de l'Offre</h3>
+          </div>
+          <div class="card-body overflow-auto">
+            <% if offer %>
+              <p class="border p-3 rounded bg-light"><%= offer.answer || '...' %></p>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -25,20 +25,22 @@ class NichesController < ApplicationController
     end
   end
 
+
+  def select
+    @nich.update(status: Nich::SELECTED)
+
+    GenerateContentJob.perform_later(@nich.id)
+    sleep 1 # Test pour voir si l'avatar a eu le temps d'être créé
+    redirect_to project_nich_avatar_path(@project, @nich, @nich.avatar)
+  end
+
   def generate_ai_data
     @nich = @project.niches.first
     @project.niches.each do |nich|
+      puts "start background job"
       NichProblemGeneratorJob.perform_later(nich.id)
     end
     redirect_to project_nich_path(@project, @nich)
-  end
-
-  def select
-      @nich.update(status: Nich::SELECTED)
-
-    flash[:notice] = "Nous générons votre hypothèse de business..."
-
-      redirect_to project_path(@nich.project)
   end
 
   private

@@ -17,13 +17,10 @@ class NichProblemGeneratorJob < ApplicationJob
 
       # Mettre à jour la niche avec les résultats
     nich.update(problem: problem_response, fear: fear_response, desire: desire_response, ai_status: "completed")
-    puts 'NIIIIIIIIIIICHHHHHHEEEEE UPPPPPDDDDDDAAAAAAATTTTTTTEEEEEEDDDD 495498549599'
-    puts 'STAAAAAAAAAAARRRRRRRRRRTTTTTTTTTT  BBBBBBBRRRRRRROOOOOOOOOOAAAAAAADDDCCCCCCCAAAAST495498549599'
     Turbo::StreamsChannel.broadcast_replace_to(
       "nich_#{nich.id}",
       target: "nich_#{nich.id}",
       partial: "niches/details", locals: { nich: nich, project: nich.project })
-      puts 'update done in real time'
   end
 
 

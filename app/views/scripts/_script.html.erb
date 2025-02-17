@@ -1,12 +1,11 @@
 <%# app/views/scripts/_script.html.erb %>
-<%= turbo_frame_tag :script_details do %>
+<div id="<%= dom_id(script) %>">
+  <%= turbo_stream_from dom_id(script) %>
   <div class="card h-100 w-100 shadow-lg">
     <div class="card-body d-flex flex-column">
-      <h3 class="card-title text-center">Détails du Script</h3>
-      <h4 class="card-subtitle mb-3">Question</h4>
-      <% if @script %>
-        <p class="card-text flex-grow-1"><%= @script.question %></p>
-      <% end %>
+
+      <p class="card-text flex-grow-1"><%= script.question || "..." %></p>
+      
     </div>
   </div>
-<% end %>
+</div>

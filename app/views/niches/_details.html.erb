@@ -13,5 +13,9 @@
       <h5>Désir</h5>
       <p><%= nich.desire || '...' %></p>
     </div>
-    <%= button_to 'Sélectionner cette niche', select_project_nich_path(project, nich), method: :patch, class: 'btn btn-primary', data: { turbo: false } %>
+    <%= button_to 'Sélectionner cette niche',
+    select_project_nich_path(project, nich),
+    method: :patch, class: 'btn btn-primary',
+    data: { turbo: false },
+    form: { authenticity_token: true }%>
 </div>

@@ -1,24 +1,12 @@
 <%# app/views/messages/show.html.erb %>
 
-<% if @message %>
-  <div id="<%= dom_id(@message) %>">
-    <%= turbo_stream_from "message_#{@message.id}" %>
-    <div class="items-grid">
-      <div>
-        <%= render 'projects/items' %>
-      </div>
-      <div id="message_<%= @message.id %>">
-        <%= render 'message', message: @message %>
-      </div>
-    </div>
+<div class="items-grid">
+
+  <div>
+    <%= render 'projects/items' %>
   </div>
-  <% else %>
-   <div class="items-grid">
-      <div>
-        <%= render 'projects/items' %>
-      </div>
-      <div>
-        <%= render 'message'%>
-      </div>
-    </div>
-<% end %>
+  <div>
+    <%= render 'message', message: @message %>
+  </div>
+
+</div>

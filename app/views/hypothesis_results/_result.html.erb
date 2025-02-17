@@ -1,17 +1,17 @@
-<div class="card h-100 w-100 shadow-lg">
-  <div class="card-header text-center bg-success text-white">
-    <h3>Détails de l'Hypothèse</h3>
-  </div>
-  <div class="card-body d-flex flex-column">
-    <div class="card mb-3">
-      <div class="card-body">
-        <h4 class="card-title text-success mt-3">Réponse</h4>
-        <p class="card-text border p-3 rounded bg-light">
-          <% if @result %>
-            <%= @result.answer %>
-          <% end %>
-        </p>
+<div id="<%= dom_id(result) %>">
+  <%= turbo_stream_from dom_id(result) %>
+  <div class="card h-100 w-100 shadow-lg">
+    <div class="card-header text-center bg-success text-white">
+    </div>
+    <div class="card-body d-flex flex-column">
+      <div class="card mb-3">
+        <div class="card-body">
+          <p class="card-text border p-3 rounded bg-light">
+              <%= result.answer || "..." %>
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </div>
+

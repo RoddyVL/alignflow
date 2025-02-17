@@ -17,6 +17,18 @@ class Nich < ApplicationRecord
 
   private
 
+  def just_selected?
+    saved_change_to_status? && status == SELECTED
+  end
+
+  def instantiate_associated_models
+    create_avatar unless avatar
+    create_offer unless offer
+    create_hypothesis_result unless hypothesis_result
+    create_message unless message
+    create_script unless script
+  end
+
   def fetch_ai_answer
     NichProblemGeneratorJob.perform_later(id)
   end

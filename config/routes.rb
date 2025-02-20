@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   resources :projects, only: %i[index show create] do
+    resources :skills, only: %i[new create]
     resources :niches, only: %i[new create index show] do
       member do
         patch :select

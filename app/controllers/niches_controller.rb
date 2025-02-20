@@ -38,7 +38,7 @@ class NichesController < ApplicationController
     @nich = @project.niches.first
     @project.niches.each do |nich|
       puts "start background job"
-      NichProblemGeneratorJob.perform_later(nich.id)
+      # NichProblemGeneratorJob.perform_later(nich.id)
     end
     redirect_to project_nich_path(@project, @nich)
   end

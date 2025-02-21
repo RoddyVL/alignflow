@@ -41,7 +41,7 @@ class NichesController < ApplicationController
       puts "start background job"
       NichProblemGeneratorJob.perform_later(nich.id)
     end
-    sleep 1
+    sleep 3
     redirect_to project_nich_path(@project, @nich)
   end
 

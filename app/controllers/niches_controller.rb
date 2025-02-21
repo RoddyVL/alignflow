@@ -8,6 +8,7 @@ class NichesController < ApplicationController
 
   def show
     @niches = @project.niches
+    @ideas = @nich.ideas
   end
 
   def new
@@ -38,8 +39,9 @@ class NichesController < ApplicationController
     @nich = @project.niches.first
     @project.niches.each do |nich|
       puts "start background job"
-      # NichProblemGeneratorJob.perform_later(nich.id)
+      NichProblemGeneratorJob.perform_later(nich.id)
     end
+    sleep 1
     redirect_to project_nich_path(@project, @nich)
   end
 

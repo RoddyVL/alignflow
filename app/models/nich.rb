@@ -6,6 +6,7 @@ class Nich < ApplicationRecord
   has_one :message, dependent: :destroy
   has_one :script, dependent: :destroy
   has_many :ai_responses, dependent: :destroy
+  has_many :ideas, dependent: :destroy
 
   validates :name, presence: true
 

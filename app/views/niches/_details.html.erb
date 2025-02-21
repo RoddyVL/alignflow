@@ -3,19 +3,23 @@
 
 <div id="<%= dom_id(nich) %>">
   <%= turbo_stream_from dom_id(nich) %>
-  <div class="details">
-      <h5>Problème</h5>
-      <p><%= nich.problem || '...'%></p>
-
-      <h5>Peur</h5>
-      <p><%= nich.fear || '...'%></p>
-
-      <h5>Désir</h5>
-      <p><%= nich.desire || '...' %></p>
-    </div>
-    <%= button_to 'Sélectionner cette niche',
+  <h1 class='my-3'>Voici <%= ideas.length %> idées de services rentables à lancer</h1>
+  <div class="row">
+    <% ideas.each do |idea| %>
+      <div class="mb-3">
+        <div class="card">
+          <%= link_to '#', class: 'text-decoration-none ', method: :patch do %>
+            <div class="card-body">
+              <p class="card-text"><%= idea.description || '...' %></p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%# <%= button_to 'Sélectionner cette niche',
     select_project_nich_path(project, nich),
     method: :patch, class: 'btn btn-primary',
     data: { turbo: false },
-    form: { authenticity_token: true }%>
+    form: { authenticity_token: true } %>
 </div>

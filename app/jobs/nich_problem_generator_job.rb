@@ -2,25 +2,47 @@ class NichProblemGeneratorJob < ApplicationJob
   queue_as :default
 
   def perform(nich_id)
+    # On récupère la nich tout en gérant le cas ou l'objet est nil
     nich = Nich.find_by(id: nich_id)
-
     return unless nich
 
+    # On stock les 3 arguments que l'on va utiliser lors de l'appelle à la méthode 'generate_response' dans des variables pour un code plus lisible
+    nich_name = nich.name
     client = OpenAI::Client.new(access_token: ENV["OPENAI_ACCESS_TOKEN"])
+    prompt = """
+    A partir de ce centre d'intérêt: '''#{nich.name}''', identifie 10 services en forte demande qui se vendent déjà et dont la croissance continue.
+    Base-toi uniquement sur des **marchés en croissance** et des **services réellement vendus**.
+    Ne génère **aucune idée aléatoire** ou hypothétique.
 
-      # Générer chaque réponse avec une requête séparée
-      nich.update(ai_status: 1)
+    Ne donne **aucune analyse, explication ou introduction**.
+    Réponds uniquement avec **une liste formatée**, où chaque service est sur **une seule ligne** au format suivant :
 
-      problem_response = generate_response(client, "En un mot décris le plus grand problème de cette niche", nich.name)
-      fear_response = generate_response(client, "En un mot décris quelle est la plus grande peur des personnes dans cette niche ?", nich.name)
-      desire_response = generate_response(client, "En un mot quels est le plus grand désir des personnes dans cette niche ?", nich.name)
+    [Nom du service] : [Courte description]
 
-      # Mettre à jour la niche avec les résultats
-    nich.update(problem: problem_response, fear: fear_response, desire: desire_response, ai_status: "completed")
+    Utilise un retour à la ligne (\n) **uniquement** pour séparer chaque service.
+    Ne mets **aucun saut de ligne** à l'ntérieur d'un service.
+    Ne numérote pas la liste et n'ajoute aucun caractère supplémentaire (pas de tirets, ni de puces).
+
+    **Exemple de réponse correcte :**
+    Recommandation personnalisée : Algorithmes IA pour suggérer des produits ou contenus adaptés.\nDiagnostic médical assisté par IA : Outils pour aider les professionnels de santé à interpréter des données médicales.
+    """
+
+    # envoyer une requête à l'IA et récupérer la réponse, puis la formater
+    idea_description = generate_response(client, prompt, nich_name)
+    puts "création des idées"
+    idea_description.split("\n").each do |idea|
+      Idea.create(description: idea.strip, nich: nich) unless idea.strip.blank?
+      puts "new idea created"
+    end
+    #On passe le status à 1 pour indiquer que l'on démarre la requête
+    nich.update(ai_status: 1)
+
+    puts "start broadcasting"
     Turbo::StreamsChannel.broadcast_replace_to(
       "nich_#{nich.id}",
       target: "nich_#{nich.id}",
       partial: "niches/details", locals: { nich: nich, project: nich.project })
+    puts "finish broadcasting"
   end
 
 
@@ -31,9 +53,8 @@ class NichProblemGeneratorJob < ApplicationJob
     response = client.chat(
       parameters: {
         model: "gpt-4o-mini",
-        messages: [{ role: "system", content: "Tu es un expert en marketing." },
-                   { role: "user", content: "#{prompt} La niche est : #{nich_name}." }],
-        max_tokens: 200
+        messages: [{ role: "user", content: prompt}],
+         max_tokens: 4000
       }
     )
 

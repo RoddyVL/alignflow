@@ -2,6 +2,7 @@ class CategoryController < ApplicationController
   before_action :set_project
   before_action :set_nich
   before_action :set_idea
+  before_action :set_category
 
   def index
     @categories = @idea.categories
@@ -9,8 +10,8 @@ class CategoryController < ApplicationController
 
   def select_category
     @category.update(status: 1)
-    GenerateCategoriesJob.perform_later(@category)
-    redirect_to project_path(@project), notice: "Idée sélectionnée avec succès." 
+    GenerateContentJob.perform_later(@nich)
+    redirect_to project_path(@project), notice: "sélectionnée avec succès."
   end
 
   private
@@ -27,7 +28,7 @@ class CategoryController < ApplicationController
     @idea = @nich.ideas.find(params[:idea_id])
   end
 
-  def select_category
-    @category = @idea.categories.find(params[:category_id])
+  def set_category
+    @category = @idea.categories.find(params[:id])
   end
 end

@@ -51,6 +51,7 @@ class GenerateContentJob < ApplicationJob
       "result_#{result.id}",
       target: "result_#{result.id}",
       partial: "hypothesis_results/result", locals: { result:result })
+    puts "broadcast done"
   end
 
 

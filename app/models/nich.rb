@@ -11,34 +11,4 @@ class Nich < ApplicationRecord
   validates :name, presence: true
 
   enum ai_status: { pending: 0, processing: 1, completed: 2, failed: 3 }
-
-  # Définir les statuts possibles
-  UNSELECTED = 0
-  SELECTED = 1
-
-  private
-
-  def just_selected?
-    saved_change_to_status? && status == SELECTED
-  end
-
-  def instantiate_associated_models
-    create_avatar unless avatar
-    create_offer unless offer
-    create_hypothesis_result unless hypothesis_result
-    create_message unless message
-    create_script unless script
-  end
-
-  def fetch_ai_answer
-    NichProblemGeneratorJob.perform_later(id)
-  end
-  # Méthode pour vérifier si la niche est sélectionnée
-  def selected?
-    status == SELECTED
-  end
-
-  def unselected?
-    status == UNSELECTED
-  end
 end

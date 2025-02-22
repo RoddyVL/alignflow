@@ -23,7 +23,9 @@ Rails.application.routes.draw do
         end
 
         resources :category, only: [:index] do
-          patch :select_category
+          member do
+            patch :select_category
+          end
         end
 
       end

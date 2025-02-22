@@ -28,7 +28,7 @@ class NichesController < ApplicationController
   end
 
 
-  # Cette méthode est potentiellement inutile, à supprimer après validation
+  # Cette méthode est potentiellement inutile, à supprimer après vérification
   def select
     @ideas = @nich.ideas
     # @idea.update(status: 1)

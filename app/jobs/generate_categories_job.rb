@@ -2,7 +2,6 @@ class GenerateCategoriesJob < ApplicationJob
   queue_as :default
 
   def perform(idea)
-    puts "start backgroundjob"
     # récupérer l'Idea et sa description tout en gérant le cas ou il serait nil
     return unless idea
 
@@ -30,15 +29,17 @@ class GenerateCategoriesJob < ApplicationJob
     avocats qui veulent automatiser la création de contrat\nagences immobilières qui veulent automatiser la recherche de biens\nPME qui veulent automatiser la gestion des factures
     """
 
-    puts "requête à l'API"
     categories_description = generate_categories(client, prompt)
-    puts "réponse récupérer #{categories_description}"
-    puts "créations des categories"
     categories_description.split("\n").each do |category|
       Category.create(name: category, idea: idea) unless category.strip.blank?
     end
-    puts "categories created"
-    puts "the GenerateCategoriesJob have been executed for #{idea_id}"
+
+    puts "start broadcasting"
+    Turbo::StreamsChannel.broadcast_replace_to(
+      "idea_#{idea.id}",
+      target: "idea_#{idea.id}",
+      partial: "category/categories", locals: { categories: idea.categories, idea: idea })
+    puts "finish broadcasting"
   end
 
     private

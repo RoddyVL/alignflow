@@ -26,6 +26,9 @@ class NichProblemGeneratorJob < ApplicationJob
     Recommandation personnalisée : Algorithmes IA pour suggérer des produits ou contenus adaptés.\nDiagnostic médical assisté par IA : Outils pour aider les professionnels de santé à interpréter des données médicales.
     """
 
+    #On passe le status à 1 pour indiquer que l'on démarre la requête
+    nich.update(ai_status: 1)
+
     # envoyer une requête à l'IA et récupérer la réponse, puis la formater
     idea_description = generate_response(client, prompt, nich_name)
     puts "création des idées"
@@ -33,8 +36,8 @@ class NichProblemGeneratorJob < ApplicationJob
       Idea.create(description: idea.strip, nich: nich) unless idea.strip.blank?
       puts "new idea created"
     end
-    #On passe le status à 1 pour indiquer que l'on démarre la requête
-    nich.update(ai_status: 1)
+
+    nich.update(ai_status: 2)
 
     puts "start broadcasting"
     Turbo::StreamsChannel.broadcast_replace_to(

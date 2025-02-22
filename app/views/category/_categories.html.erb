@@ -1,0 +1,10 @@
+<div id="<%= dom_id(idea) %>">
+  <%= turbo_stream_from dom_id(idea) %>
+  <% if categories %>
+    <% categories.each do |category| %>
+      <p><%= category.name %></p>
+    <% end %>
+    <% else %>
+      <h1>Génération en cours...</h1>
+  <% end %>
+</div>

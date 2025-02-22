@@ -3,23 +3,29 @@
 
 <div id="<%= dom_id(nich) %>">
   <%= turbo_stream_from dom_id(nich) %>
-  <h1 class='my-3'>Voici <%= ideas.length %> idées de services rentables à lancer</h1>
-  <div class="row">
+
+  <% if ideas&.any? %>
+  <h1 class='my-4'>Voici <%= ideas.length %> idées de produits rentable à lancer</h1>
+
     <% ideas.each do |idea| %>
       <div class="mb-3">
         <div class="card">
-          <%= link_to '#', class: 'text-decoration-none ', method: :patch do %>
+          <%= button_to select_idea_project_nich_idea_path(project, nich, idea),
+            class: 'btn btn-outline-dark text-decoration-none w-100',
+            method: :patch,  data: { turbo: false },
+
+            form: { authenticity_token: true } do %>
             <div class="card-body">
               <p class="card-text"><%= idea.description || '...' %></p>
             </div>
           <% end %>
+
         </div>
       </div>
     <% end %>
-  </div>
-  <%# <%= button_to 'Sélectionner cette niche',
-    select_project_nich_path(project, nich),
-    method: :patch, class: 'btn btn-primary',
-    data: { turbo: false },
-    form: { authenticity_token: true } %>
+
+  <% else %>
+    <h1 class='my-4'>Analyse en cours...</h1>
+  <% end %>
+
 </div>

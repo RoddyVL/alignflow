@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_20_205959) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_21_145233) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,6 +32,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_20_205959) do
     t.index ["nich_id"], name: "index_avatars_on_nich_id"
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.integer "status", default: 0, null: false
+    t.bigint "idea_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["idea_id"], name: "index_categories_on_idea_id"
+  end
+
   create_table "hypothesis_results", force: :cascade do |t|
     t.text "question"
     t.text "answer"
@@ -46,6 +55,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_20_205959) do
     t.bigint "nich_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0, null: false
     t.index ["nich_id"], name: "index_ideas_on_nich_id"
   end
 
@@ -249,6 +259,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_20_205959) do
 
   add_foreign_key "ai_responses", "niches"
   add_foreign_key "avatars", "niches"
+  add_foreign_key "categories", "ideas"
   add_foreign_key "hypothesis_results", "niches"
   add_foreign_key "ideas", "niches"
   add_foreign_key "messages", "niches"

@@ -12,8 +12,20 @@ Rails.application.routes.draw do
   resources :projects, only: %i[index show create] do
     resources :skills, only: %i[new create]
     resources :niches, only: %i[new create index show] do
+
       member do
         patch :select
+      end
+
+      resources :ideas do
+        member do
+          patch :select_idea
+        end
+
+        resources :category, only: [:index] do
+          patch :select_category
+        end
+
       end
       post :generate_ai_data, on: :collection
       resources :avatars, only: [:show]

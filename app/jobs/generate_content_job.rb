@@ -2,8 +2,8 @@ class GenerateContentJob < ApplicationJob
   queue_as :default
 
   def perform(nich_id)
-    nich = Nich.find_by(id: nich_id)
 
+    nich = Nich.find_by(id: nich_id)
     return unless nich
 
     client = OpenAI::Client.new

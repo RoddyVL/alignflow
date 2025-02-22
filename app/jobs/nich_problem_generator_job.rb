@@ -6,11 +6,10 @@ class NichProblemGeneratorJob < ApplicationJob
     nich = Nich.find_by(id: nich_id)
     return unless nich
 
-    # On stock les 3 arguments que l'on va utiliser lors de l'appelle à la méthode 'generate_response' dans des variables pour un code plus lisible
-    nich_name = nich.name
+    # On stock les 2 arguments que l'on va utiliser lors de l'appelle à la méthode 'generate_response' dans des variables pour un code plus lisible
     client = OpenAI::Client.new(access_token: ENV["OPENAI_ACCESS_TOKEN"])
     prompt = """
-    A partir de ce centre d'intérêt: '''#{nich.name}''', identifie 10 services en forte demande qui se vendent déjà et dont la croissance continue.
+    A partir de ce centre d'intérêt: '''#{nich.name}''', identifie 2 services en forte demande qui se vendent déjà et dont la croissance continue.
     Base-toi uniquement sur des **marchés en croissance** et des **services réellement vendus**.
     Ne génère **aucune idée aléatoire** ou hypothétique.
 
@@ -49,7 +48,7 @@ class NichProblemGeneratorJob < ApplicationJob
   private
 
 
-  def generate_response(client, prompt, nich_name)
+  def generate_response(client, prompt)
     response = client.chat(
       parameters: {
         model: "gpt-4o-mini",

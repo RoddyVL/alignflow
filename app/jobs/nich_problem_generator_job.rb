@@ -30,7 +30,7 @@ class NichProblemGeneratorJob < ApplicationJob
     nich.update(ai_status: 1)
 
     # envoyer une requête à l'IA et récupérer la réponse, puis la formater
-    idea_description = generate_response(client, prompt, nich_name)
+    idea_description = generate_response(client, prompt)
     puts "création des idées"
     idea_description.split("\n").each do |idea|
       Idea.create(description: idea.strip, nich: nich) unless idea.strip.blank?
@@ -38,12 +38,12 @@ class NichProblemGeneratorJob < ApplicationJob
     end
 
     nich.update(ai_status: 2)
-
+    ideas = nich.ideas
     puts "start broadcasting"
     Turbo::StreamsChannel.broadcast_replace_to(
       "nich_#{nich.id}",
       target: "nich_#{nich.id}",
-      partial: "niches/details", locals: { nich: nich, project: nich.project })
+      partial: "niches/details", locals: { nich: nich, project: nich.project, ideas:  })
     puts "finish broadcasting"
   end
 

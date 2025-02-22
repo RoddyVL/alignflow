@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   def index
-    @niches = Nich.where(status: 1)
+    @niches = Nich.where(status: 2)
     @project = Project.new
   end
 

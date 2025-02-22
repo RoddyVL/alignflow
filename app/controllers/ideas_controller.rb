@@ -5,7 +5,7 @@ class IdeasController < ApplicationController
 
   def select_idea
     @idea.update(status: 1)
-    @idea.nich.update(status: 2)
+    @idea.nich.update(status: 2, ai_status: 2)
       GenerateCategoriesJob.perform_later(@idea)
       redirect_to project_nich_idea_category_index_path(@project, @nich, @idea)
   end

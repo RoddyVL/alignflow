@@ -2,7 +2,7 @@ class CategoryController < ApplicationController
   before_action :set_project
   before_action :set_nich
   before_action :set_idea
-  before_action :set_category
+  before_action :set_category, only: [:select_category]
 
   def index
     @categories = @idea.categories
@@ -31,4 +31,5 @@ class CategoryController < ApplicationController
   def set_category
     @category = @idea.categories.find(params[:id])
   end
+  
 end

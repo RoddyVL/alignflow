@@ -32,43 +32,67 @@ PROMPTS = {
   offer: <<~TEXT,
     À partir de cette niche: %category
 
-je veux que tu répondes aux questions suivantes en te basant sur des **données réelles et vérifiables**.
+    je veux que tu répondes aux questions suivantes en te basant sur des **données réelles et vérifiables**.
 
-### **Format de réponse attendu**
-Retourne **uniquement** un texte formaté en respectant la structure suivante :
+    ### **Format de réponse attendu**
+    Retourne **uniquement** un texte formaté en respectant la structure suivante :
 
-- Chaque question doit être en **gras** avec la balise `<strong>`.
-- La réponse doit être **claire, détaillée et bien structurée**, avec des retours à la ligne pour améliorer la lisibilité.
-- Ne saute **aucune question** et assure-toi de donner des réponses précises et pertinentes.
+    - Chaque question doit être en **gras** avec la balise `<strong>`.
+    - La réponse doit être **claire, détaillée et bien structurée**, avec des retours à la ligne pour améliorer la lisibilité.
+    - Ne saute **aucune question** et assure-toi de donner des réponses précises et pertinentes.
 
-### **Exemple de réponse correcte :**
-```html
-<strong>Quelle est leur situation actuelle ?</strong><br>
-La majorité des participants de cette niche se trouvent dans une situation où ils manquent de ressources et de soutien pour atteindre leurs objectifs. Beaucoup sont encore en phase de test et d'expérimentation, ce qui les empêche d'obtenir des résultats stables.<br><br>
+    ### **Exemple de réponse correcte :**
+    ```html
+    <strong>Quelle est leur situation actuelle ?</strong><br>
+    La majorité des participants de cette niche se trouvent dans une situation où ils manquent de ressources et de soutien pour atteindre leurs objectifs. Beaucoup sont encore en phase de test et d'expérimentation, ce qui les empêche d'obtenir des résultats stables.<br><br>
 
-<strong>Quelle est leur situation désirée ?</strong><br>
-Ils souhaitent atteindre un niveau où ils peuvent générer des revenus réguliers et avoir une stabilité financière grâce à leur activité. Leur objectif est de maximiser leur impact tout en ayant une charge de travail optimisée.<br><br>
+    <strong>Quelle est leur situation désirée ?</strong><br>
+    Ils souhaitent atteindre un niveau où ils peuvent générer des revenus réguliers et avoir une stabilité financière grâce à leur activité. Leur objectif est de maximiser leur impact tout en ayant une charge de travail optimisée.<br><br>
 
-<strong>Quel est le coût de rester dans leur situation actuelle ?</strong><br>
-Leur stagnation leur coûte en opportunités perdues, en frustration et en temps gâché sur des stratégies inefficaces. Certains subissent également une pression financière qui les pousse à abandonner.<br><br>
-Les questions à traiter :
-<strong>Quelle est leur situation actuelle ?</strong>
-<strong>Quelle est leur situation désirée ?</strong>
-<strong>Quel est le coût de rester dans leur situation actuelle ?</strong>
-<strong>Quelle est la valeur de les aider à atteindre leur situation désirée ?</strong>
-<strong>Que font la plupart des participants de cette niche pour essayer d'atteindre leur situation désirée ? Cela fonctionne-t-il bien pour eux ?</strong>
-<strong>Que proposent les prestataires de services aux participants pour les aider à atteindre leur situation désirée ? Cela fonctionne-t-il bien pour les participants et pour les prestataires ?</strong>
-<strong>Que font les participants les plus performants ? Comment parviennent-ils à atteindre leur situation désirée et en quoi leur approche est-elle différente ?</strong>
-⚡ Contraintes strictes :
-✅ Ne donne aucune analyse ou explication. Fournis uniquement les réponses sous la forme demandée.
-✅ Utilise des données réalistes et pertinentes. Pas d'hypothèses ou de spéculations vagues.
-✅ Structure la réponse avec les balises <strong> pour les questions et <br> pour une meilleure lisibilité.
+    <strong>Quel est le coût de rester dans leur situation actuelle ?</strong><br>
+    Leur stagnation leur coûte en opportunités perdues, en frustration et en temps gâché sur des stratégies inefficaces. Certains subissent également une pression financière qui les pousse à abandonner.<br><br>
+    Les questions à traiter :
+    <strong>Quelle est leur situation actuelle ?</strong>
+    <strong>Quelle est leur situation désirée ?</strong>
+    <strong>Quel est le coût de rester dans leur situation actuelle ?</strong>
+    <strong>Quelle est la valeur de les aider à atteindre leur situation désirée ?</strong>
+    <strong>Que font la plupart des participants de cette niche pour essayer d'atteindre leur situation désirée ? Cela fonctionne-t-il bien pour eux ?</strong>
+    <strong>Que proposent les prestataires de services aux participants pour les aider à atteindre leur situation désirée ? Cela fonctionne-t-il bien pour les participants et pour les prestataires ?</strong>
+    <strong>Que font les participants les plus performants ? Comment parviennent-ils à atteindre leur situation désirée et en quoi leur approche est-elle différente ?</strong>
+    ⚡ Contraintes strictes :
+    ✅ Ne donne aucune analyse ou explication. Fournis uniquement les réponses sous la forme demandée.
+    ✅ Utilise des données réalistes et pertinentes. Pas d'hypothèses ou de spéculations vagues.
+    ✅ Structure la réponse avec les balises <strong> pour les questions et <br> pour une meilleure lisibilité.
 
   TEXT
 
-  niche_research: <<~TEXT,
-    Trouve les meilleures niches pour ce produit en te basant sur des données de marché réelles.
-    Identifie les besoins non satisfaits, les tendances émergentes et les opportunités inexploitées.
-    Fournis une liste de niches spécifiques et justifiées.
+  message: <<~TEXT,
+    À partir de cette niche ***%category***, je veux que tu répondes aux questions suivantes en te basant sur **des données réelles et vérifiables**.
+
+    ### **Format de réponse attendu**
+    - Chaque question doit être en **gras** avec la balise `<strong>`.
+    - La réponse doit être claire, détaillée et structurée avec des retours à la ligne pour faciliter la lecture.
+    - Ne saute aucune question et veille à ce que chaque élément soit traité de manière précise et pertinente.
+
+    ### **Exemple de réponse correcte :**
+    ```html
+    <strong>Cette niche possède-t-elle son propre langage/argot ? Et si oui, quels sont quelques-uns des mots clés, phrases et expressions qu'ils utilisent ?</strong><br>
+    Oui, cette niche utilise un certain nombre de termes spécifiques à leur domaine. Par exemple, les mots "toiture", "rénovation", "zinguerie" sont couramment utilisés dans leur communication. Certains expressions comme "toit végétalisé" ou "isolation thermique" sont également fréquemment mentionnées, indiquant une spécialisation dans les aspects techniques de la toiture.<br><br>
+
+    <strong>Définis ton message en une ou deux phrases en utilisant l' “Équation du message” :  Equation: Je aide [niche] à [obtenir un résultat] en [offre].</strong><br>
+    J'aide les entreprises de toiture à augmenter leur rentabilité et à obtenir plus de contrats en optimisant leur processus internes et en mettant en place une stratégie d'acquisition client efficace.<br><br>
+
+    <strong>Évalue ton Message-Hypothèse sur une échelle de 1 à 10 pour voir à quel point il résonne avec tes prospects avant tout retour. 1 étant sans résonance et 10 étant une résonance parfaitement claire.</strong><br>
+    8/10.<br><br>
+    Les questions à traiter :
+    <strong>Cette niche possède-t-elle son propre langage/argot ? Et si oui, quels sont quelques-uns des mots clés, phrases et expressions qu'ils utilisent ?</strong>
+    <strong>Définis ton message en une ou deux phrases en utilisant l' “Équation du message” : Equation: Je aide [niche] à [obtenir un résultat] en [offre].</strong>
+    <strong>Évalue ton Message-Hypothèse sur une échelle de 1 à 10 pour voir à quel point il résonne avec tes prospects avant tout retour. 1 étant sans résonance et 10 étant une résonance parfaitement claire.</strong>
+    ⚡ Contraintes strictes :
+    ✅ Utilise uniquement des données réalistes et vérifiables. Pas de spéculations ou de généralisations.
+    ✅ Retourne la réponse en utilisant des balises HTML : Les questions en <strong> et les réponses avec des retours à la ligne (<br>) pour améliorer la lisibilité.
+    ✅ Ne change pas la structure du prompt. Respecte l'ordre des questions et la présentation.
+
+
   TEXT
 }

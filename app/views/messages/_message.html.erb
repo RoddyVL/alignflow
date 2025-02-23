@@ -8,9 +8,7 @@
       <h3>Message Détails</h3>
     </div>
     <div class="card-body d-flex flex-column">
-
-        <p class="border p-3 rounded bg-light flex-grow-1"><%= message.answer || '...' %></p>
-
+      <p class="border p-3 rounded bg-light flex-grow-1"><%= message.answer.html_safe || '...' %></p>
     </div>
   </div>
 

@@ -7,11 +7,10 @@
       <div class="card mb-3">
         <div class="card-body">
           <p class="card-text border p-3 rounded bg-light">
-              <%= result.answer || "..." %>
+              <%= result.answer.html_safe || "..." %>
           </p>
         </div>
       </div>
     </div>
   </div>
 </div>
-

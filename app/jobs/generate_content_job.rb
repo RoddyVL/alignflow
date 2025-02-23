@@ -12,13 +12,13 @@ class GenerateContentJob < ApplicationJob
 
   # instancier les modèles afin d'éviter une erreur 'id: nil' pour le turbo stream:
     # avatar = nich.create_avatar
-    nich_offer = nich.offer # ou une autre condition spécifique
-    offer = nich.create_offer unless nich_offer.present?
+    # nich_offer = nich.offer # ou une autre condition spécifique
+    # offer = nich.create_offer unless nich_offer.present?
 
-    message = nich.create_message
+    # message = nich.create_message
 
     # script = nich.create_script  unless nich_script.present?
-    # result = nich.create_hypothesis_result  unless nich_result.present?
+    result = nich.create_hypothesis_result
 
     # récupération de la donnée pour avatar
       # avatar_prompt = PROMPTS[:avatar].gsub('%category', category.name)
@@ -61,25 +61,41 @@ class GenerateContentJob < ApplicationJob
     # end
 
     # récupération de la donnée pour Message
-    message_prompt = PROMPTS[:message].gsub('%category', category.name)
-    puts "message_prompt: #{message_prompt}"
+    # message_prompt = PROMPTS[:message].gsub('%category', category.name)
+    # puts "message_prompt: #{message_prompt}"
 
-      puts "message fetching AI"
-      message_response = generate_text(client, message_prompt)
-      puts "message_response: #{message_response}"
+    #   puts "message fetching AI"
+    #   message_response = generate_text(client, message_prompt)
+    #   puts "message_response: #{message_response}"
 
-      puts "update message"
-        message.update(
-          answer: message_response,
-          nich: nich)
+    #   puts "update message"
+    #     message.update(
+    #       answer: message_response,
+    #       nich: nich)
 
-      puts "broadcasting message"
-      Turbo::StreamsChannel.broadcast_replace_to(
-        "message_#{message.id}",
-        target: "message_#{message.id}",
-        partial: "messages/message", locals: { message: message })
+    #   puts "broadcasting message"
+    #   Turbo::StreamsChannel.broadcast_replace_to(
+    #     "message_#{message.id}",
+    #     target: "message_#{message.id}",
+    #     partial: "messages/message", locals: { message: message })
   #
 
+   result_prompt = PROMPTS[:result].gsub('%category', category.name)
+    puts "message_prompt: #{result_prompt}"
+    puts "fetching Result AI"
+      result_response = generate_text(client, result_prompt)
+      puts "result_response: #{result_response}"
+
+      puts "update result"
+        result.update(
+          answer: result_response,
+          nich: nich)
+
+      puts "broadcasting result"
+      Turbo::StreamsChannel.broadcast_replace_to(
+        "result_#{result.id}",
+        target: "result_#{result.id}",
+        partial: "hypothesis_results/result", locals: { result: result })
   #   puts "script fetching"
   #   script.update(question: generate_text(client, "en une phrase présente un business qui aide les personnes de cette niche: #{nich.name}"))
   #   Turbo::StreamsChannel.broadcast_replace_to(

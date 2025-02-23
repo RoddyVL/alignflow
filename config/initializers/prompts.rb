@@ -95,4 +95,66 @@ PROMPTS = {
 
 
   TEXT
+
+  result: <<~TEXT,
+    À partir de la niche ***%category***, réponds aux questions suivantes en utilisant des **données réelles et vérifiables**. Organise ta réponse de la manière suivante :
+
+    1. **Pour cette question spécifique** : "Déterminons ce qui fonctionne et ce qui ne fonctionne pas pour aider cette niche : ***%category***", rends la réponse sous forme de tableau avec deux colonnes : "Signal" et "Noise". Les éléments pertinents seront placés dans la colonne **Signal** et les éléments inutiles ou contradictoires seront placés dans la colonne **Noise**.
+
+    2. **Pour toutes les autres questions**, tu réponds en texte normal avec une structure claire, incluant des balises HTML de formatage.
+
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Signal</th>
+          <th scope="col">Noise</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Signal 1: [Décrire un signal ici]</td>
+          <td>Noise 1: [Décrire un bruit ici]</td>
+        </tr>
+        <tr>
+          <td>Signal 2: [Décrire un autre signal ici]</td>
+          <td>Noise 2: [Décrire un autre bruit ici]</td>
+        </tr>
+        <tr>
+          <td>Signal 3: [Décrire un autre signal ici]</td>
+          <td>Noise 3: [Décrire un autre bruit ici]</td>
+        </tr>
+        <!-- Ajoute des lignes supplémentaires pour chaque signal/noise -->
+      </tbody>
+    </table>
+
+    <strong>Sur la base de ce qui précède, quel est le minimum de travail possible que tu pourrais faire pour aider cette niche à passer de leur situation actuelle à leur situation désirée ? (décris exactement ce que tu feras pour eux et combien de temps cela prendra)</strong><br>
+    réponse<br><br>
+
+    <strong>Quel serait un prix juste mais élevé que tu pourrais facturer pour cette offre ?</strong><br>
+    réponse<br><br>
+
+    <strong>Quelle est ta certitude sur ta niche sur une échelle de 1 à 10, avec 1 étant totalement incertain et 10 étant absolument certain ?</strong><br>
+    réponse<br><br>
+
+    <strong>À quel point la situation actuelle de la niche est-elle douloureuse, selon leur point de vue, sur une échelle de 1 à 10, avec 1 étant pas douloureux du tout et 10 étant une douleur excruciante ?</strong><br>
+    réponse<br><br>
+
+    <strong>À quel point le désir d'atteindre leur situation désirée est-il urgent pour cette niche, sur une échelle de 1 à 10, avec 1 étant aucun désir et 10 étant un désir extrême ?</strong><br>
+    réponse<br><br>
+
+    <strong>À quel point est-il complexe d'offrir la solution que tu proposes actuellement, sur une échelle de 1 à 10, avec 1 étant extrêmement complexe et 10 étant simple ?</strong><br>
+    réponse<br><br>
+
+    <strong>À quel point penses-tu qu'il est possible d'atteindre la situation désirée de la niche, sur une échelle de 1 à 10, avec 1 étant pas possible du tout et 10 étant plus que possible ?</strong><br>
+    réponse<br><br>
+
+    <strong>Ajoute tes classements des questions 8 à 12 ci-dessus. Quelle est ta note totale sur 50 ?</strong><br>
+    réponse<br><br>
+
+    <strong>Quel délai est-ce que tu estimes pour atteindre la situation désirée en jours ?</strong><br>
+    réponse<br><br>
+
+    ✅ Ne donne aucune analyse ou explication. Fournis uniquement les réponses sous la forme demandée.
+
+  TEXT
 }

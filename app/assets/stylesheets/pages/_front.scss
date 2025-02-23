@@ -1,0 +1,85 @@
+.saas_color {
+  background-color: #f5f8ff;
+}
+
+h1{
+  color: #081131;
+  word-wrap: break-word;
+  font-weight: 700;
+}
+
+h2, h3 {
+  color: white;
+  word-wrap: break-word;
+  font-weight: 700;
+}
+
+.btn-custom {
+  background-color: #4083ff;
+  color: #ffff;
+  text-align: center;
+  border-radius: 6.25rem;
+  width: 13.5625rem;
+  padding: .9375rem;
+  font-family: Generalsans, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 100%;
+}
+
+.btn-custom:hover {
+  background-color: #f5f8ff;
+  color: #081131;
+  border-color: #4083ff;
+  text-align: center;
+  border-radius: 6.25rem;
+  width: 14.5625rem;
+  padding: .9375rem;
+  font-family: Generalsans, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 100%;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-small {
+  background-color: #4083ff;
+  color: #ffff;
+  text-align: center;
+  border-radius: 6.25rem;
+  width: 4.5625rem;
+  padding: .9375rem;
+  font-family: Generalsans, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 100%;
+}
+
+.btn-small:hover {
+  background-color: #f5f8ff;
+  color: #081131;
+  border-color: #4083ff;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  border-radius: 6.25rem;
+  width: 4.5625rem;
+  padding: .9375rem;
+  font-family: Generalsans, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 100%;
+}
+
+.list-group-item.custom {
+  background-color: #0c1f4d; /* Nouvelle couleur de fond */
+  color: white;
+  border-color: #ddd;
+}
+
+.card {
+  background-color: #f5f8ff
+}
+
+.card-header {
+  background-color: #0c1f4d;
+}

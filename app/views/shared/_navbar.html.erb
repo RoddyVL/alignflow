@@ -9,6 +9,7 @@
 
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
         <% else %>
           <li class="nav-item">
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>

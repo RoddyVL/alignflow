@@ -5,19 +5,16 @@
     <div class="row g-3">
     <h1 class="text-center">Cliquer sur une niche pour la séléctionner</h1>
       <% categories.each do |category| %>
-        <div class="col-md-12 col-lg-">
-          <div class="card shadow-sm border-0 rounded">
-            <div class="card-body text-center">
-              <%= button_to select_category_project_nich_idea_category_path(project, nich, idea, category),
-                class: 'btn btn-outline-dark w-100 fw-bold',
-                method: :patch, data: { turbo: false },
-                form: { authenticity_token: true } do %>
-                <%= category.name || '...' %>
-              <% end %>
-            </div>
+      <div class="col-md-12 col-lg-">
+        <%= button_to select_category_project_nich_idea_category_path(project, nich, idea, category),
+                      method: :patch, data: { turbo: false }, class: 'card shadow-sm border-0 rounded btn btn-idea w-100', form: { authenticity_token: true } do %>
+          <div class="card-body text-center">
+            <%= category.name || '...' %>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
     </div>
 
   <% else %>

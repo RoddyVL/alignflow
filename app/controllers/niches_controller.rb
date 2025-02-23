@@ -37,11 +37,11 @@ class NichesController < ApplicationController
 
   def generate_ai_data
     @nich = @project.niches.first
-    @project.niches.each do |nich|
-      puts "start background job"
-      sleep 1
-      NichProblemGeneratorJob.perform_later(nich.id)
-    end
+    # @project.niches.each do |nich|
+    #   puts "start background job"
+    #   sleep 1
+    #   NichProblemGeneratorJob.perform_later(nich.id)
+    # end
     redirect_to project_nich_path(@project, @nich)
   end
 
@@ -58,6 +58,7 @@ class NichesController < ApplicationController
   def set_nich
     @nich = @project.niches.find(params[:id])
   end
+
 
   # def set_idea
   #   @idea = @nich.ideas.find(params[:id])

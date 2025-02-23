@@ -11,12 +11,12 @@
       <div class="mb-3">
         <div class="card">
           <%= button_to select_idea_project_nich_idea_path(project, nich, idea),
-            class: 'btn btn-outline-dark text-decoration-none w-100',
+            class: 'btn btn-idea w-100',
             method: :patch,  data: { turbo: false },
 
             form: { authenticity_token: true } do %>
             <div class="card-body">
-              <p class="card-text"><%= idea.description || '...' %></p>
+              <p class="card-text"><%= idea.description || '⏳ Génération en cours...' %></p>
             </div>
             <% end %>
 

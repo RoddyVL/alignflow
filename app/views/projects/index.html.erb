@@ -1,26 +1,28 @@
 <%# app/views/projects/index.html.erb %>
 
 <div class="container mt-4">
-  <h1 class="mb-4">Mes projets</h1>
-
   <div class="row">
+    <%# Première colonne gauche %>
     <div class="col-md-6">
-      <%= simple_form_for @project, html: { class: 'form' } do |f| %>
-        <div class="form-group">
-          <%= f.input :name, input_html: { class: 'form-control' }, label: "Nom du projet" %>
+      <div data-controller='toggle'>
+        <button class="btn btn-small mb-3" data-action="click->toggle#fire"><strong>+</strong></button>
+        <div data-toggle-target='toggableElement' class='d-none'>
+          <%= render 'list', project: @project %>
         </div>
-        <%= f.submit 'Créer mon projet', class: 'btn btn-primary' %>
-      <% end %>
-    </div>
-  </div>
-
-  <h2 class="mt-4">Mes Projets</h2>
-
-  <div class="row">
-    <% @niches.each do |niche| %>
-      <div class="col-md-4 mb-3">
-        <%= link_to niche.project.name, project_path(niche.project), class: 'btn btn-secondary w-100' %>
       </div>
-    <% end %>
+    </div>
+
+    <%# Seconde colonne à droite %>
+    <div class="col-md-6">
+      <h1 class="mb-4">Mes projets</h1>
+
+      <div class="row">
+        <% @niches.each do |niche| %>
+          <div class="col-md-6 my-2">
+            <%= link_to niche.project.name, project_path(niche.project), class: 'btn btn-secondary w-100' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

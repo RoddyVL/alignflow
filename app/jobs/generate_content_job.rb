@@ -11,38 +11,50 @@ class GenerateContentJob < ApplicationJob
     client = OpenAI::Client.new
 
   # instancier les modèles afin d'éviter une erreur 'id: nil' pour le turbo stream:
-    avatar = nich.create_avatar
-    offer = nich.create_offer
-    message = nich.create_message
-    script = nich.create_script
-    result = nich.create_hypothesis_result
+    avatar = nich.create_avatar unless nich_avatar.present?
+    offer = nich.create_offer  unless nich_offer.present?
+    message = nich.create_message  unless nich_message.present?
+    script = nich.create_script  unless nich_script.present?
+    result = nich.create_hypothesis_result  unless nich_result.present?
 
     # les updates avec les données IA et récupérer en temps réelles avec turbo stream
-    avatar_prompt = PROMPTS[:avatar].gsub('%{category}', category.name)
-    puts "avatar fetching AI"
-    avatar_response = generate_text(client, avatar_prompt)
+    unless avatar.present?
+      avatar_prompt = PROMPTS[:avatar].gsub('%category', category.name)
+      puts "avatar fetching AI"
+      avatar_response = generate_text(client, avatar_prompt)
+      puts "avatar_response: #{avatar_response}"
 
-    puts "avatar_response: #{avatar_response}"
+      parsed_avatar_response = JSON.parse(avatar_response)
+      puts "update avatar"
+        avatar.update(
+          description: parsed_avatar_response['description'],
+          information: parsed_avatar_response['information'],
+          nich: nich)
 
-    parsed_avatar_response = JSON.parse(avatar_response)
-    puts "update avatar"
-      avatar.update(
-        description: parsed_avatar_response['description'],
-        information: parsed_avatar_response['information'],
+        Turbo::StreamsChannel.broadcast_replace_to(
+          "avatar_#{avatar.id}",
+          target: "avatar_#{avatar.id}",
+          partial: "avatars/avatar", locals: { avatar: avatar, category: category })
+    end
+
+
+    offer_prompt = PROMPTS[:offer].gsub('%category', category.name)
+    puts "offer_prompt: #{offer_prompt}"
+
+    puts "offer fetching AI"
+    offer_response = generate_text(client, offer_prompt)
+    puts "offer_response: #{offer_response}"
+
+    puts "update offer"
+      offer.update(
+        answer: offer_response,
         nich: nich)
 
-      Turbo::StreamsChannel.broadcast_replace_to(
-        "avatar_#{avatar.id}",
-        target: "avatar_#{avatar.id}",
-        partial: "avatars/avatar", locals: { avatar: avatar })
-
-
-  #   puts "offer fetching AI"
-  #   offer.update(answer: generate_text(client, "en 1 mot donne un nom d'offre pour cette nich: #{nich.name}"))
-  #   Turbo::StreamsChannel.broadcast_replace_to(
-  #     "offer_#{offer.id}",
-  #     target: "offer_#{offer.id}",
-  #     partial: "offers/offer", locals: { offer: offer })
+    puts "broadcassting offer"
+    Turbo::StreamsChannel.broadcast_replace_to(
+      "offer_#{offer.id}",
+      target: "offer_#{offer.id}",
+      partial: "offers/offer", locals: { offer: offer })
 
   #   puts "message fetching AI"
   #   message.update(answer: generate_text(client, "définis en un mot le nom d'un business pour cette niche: #{nich.name}"))

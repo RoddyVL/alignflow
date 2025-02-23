@@ -43,7 +43,7 @@ class NichProblemGeneratorJob < ApplicationJob
     Turbo::StreamsChannel.broadcast_replace_to(
       "nich_#{nich.id}",
       target: "nich_#{nich.id}",
-      partial: "niches/details", locals: { nich: nich, project: nich.project, ideas:  })
+      partial: "niches/details", locals: { nich: nich, project: nich.project, ideas: nich.ideas  })
     puts "finish broadcasting"
   end
 

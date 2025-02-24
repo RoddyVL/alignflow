@@ -1,7 +1,7 @@
 <%# app/views/niches/show.html.erb %>
 <div class="nich-grid">
   <%= render 'niches', niches: @niches, selected_nich: @nich %>
-  <%= render 'details', nich: @nich, project: @project %>
+  <%= render 'details', nich: @nich, project: @project, ideas: @ideas %>
 </div>
 
 <% if @nich.ai_status == "error" %>

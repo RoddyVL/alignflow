@@ -1,26 +1,33 @@
 <%# app/views/projects/index.html.erb %>
 
 <div class="container mt-4">
-  <h1 class="mb-4">Mes projets</h1>
-
+  <div>
+    <h1 class="mb-4 main-title">Mes projets</h1>
   <div class="row">
-    <div class="col-md-6">
-      <%= simple_form_for @project, html: { class: 'form' } do |f| %>
-        <div class="form-group">
-          <%= f.input :name, input_html: { class: 'form-control' }, label: "Nom du projet" %>
-        </div>
-        <%= f.submit 'Créer mon projet', class: 'btn btn-primary' %>
-      <% end %>
+    <%# Première colonne gauche %>
+    <div class="col-md-4">
+
+      <%= render 'list', project: @project %>
+
     </div>
-  </div>
 
-  <h2 class="mt-4">Mes Projets</h2>
+    <%# Seconde colonne à droite %>
+    <div class="col-md-8">
 
-  <div class="row">
-    <% @niches.each do |niche| %>
-      <div class="col-md-4 mb-3">
-        <%= link_to niche.project.name, project_path(niche.project), class: 'btn btn-secondary w-100' %>
+      <div class="row">
+
+        <% @niches.reverse.each do |nich| %>
+          <% if nich.project %>
+            <h4><%= nich.project.name %></h4>
+            <div class="col-md-6 my-2">
+              <%= link_to project_path(nich.project), class: 'btn btn-link p-0' do %>
+                <%= image_tag('project.png', alt: 'Project Icon', class: 'btn btn-project') %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+
+
       </div>
-    <% end %>
-  </div>
+    </div>
 </div>

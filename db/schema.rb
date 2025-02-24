@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_14_005339) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_22_193418) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,11 +25,21 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_14_005339) do
 
   create_table "avatars", force: :cascade do |t|
     t.string "name"
-    t.text "description"
     t.bigint "nich_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "information", default: {}
+    t.jsonb "description", default: {}
     t.index ["nich_id"], name: "index_avatars_on_nich_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.integer "status", default: 0, null: false
+    t.bigint "idea_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["idea_id"], name: "index_categories_on_idea_id"
   end
 
   create_table "hypothesis_results", force: :cascade do |t|
@@ -39,6 +49,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_14_005339) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["nich_id"], name: "index_hypothesis_results_on_nich_id"
+  end
+
+  create_table "ideas", force: :cascade do |t|
+    t.string "description"
+    t.bigint "nich_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status", default: 0, null: false
+    t.index ["nich_id"], name: "index_ideas_on_nich_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -87,6 +106,14 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_14_005339) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["nich_id"], name: "index_scripts_on_nich_id"
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "name"
+    t.bigint "project_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_skills_on_project_id"
   end
 
   create_table "solid_cable_messages", force: :cascade do |t|
@@ -233,12 +260,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_14_005339) do
 
   add_foreign_key "ai_responses", "niches"
   add_foreign_key "avatars", "niches"
+  add_foreign_key "categories", "ideas"
   add_foreign_key "hypothesis_results", "niches"
+  add_foreign_key "ideas", "niches"
   add_foreign_key "messages", "niches"
   add_foreign_key "niches", "projects"
   add_foreign_key "offers", "niches"
   add_foreign_key "projects", "users"
   add_foreign_key "scripts", "niches"
+  add_foreign_key "skills", "projects"
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_claimed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_failed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade

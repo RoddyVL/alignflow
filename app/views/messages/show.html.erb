@@ -1,12 +1,13 @@
 <%# app/views/messages/show.html.erb %>
 
 <div class="items-grid">
-
   <div>
     <%= render 'projects/items' %>
   </div>
   <div>
-    <%= render 'message', message: @message %>
+    <% if @message.present? %>
+      <%= render 'message', message: @message %>
+    <% end %>
   </div>
 
 </div>

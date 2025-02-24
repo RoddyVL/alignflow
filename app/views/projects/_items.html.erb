@@ -1,16 +1,46 @@
 <div class="items-container">
-  <h1 class="text-center mb-4"><%= @project.niches.find_by(status: 1).name %></h1>
+  <div class="items-links">
+    <div class="card mb-1 <%= 'active' if request.path == project_nich_avatar_path(@project, @nich) %>">
+      <%= link_to project_nich_avatar_path(@project, @nich), data: { turbo: false }, class: 'text-decoration-none text-dark' do %>
+        <div class="card-body">
+          <p>Voir l'Avatar</p>
+        </div>
+      <% end %>
+    </div>
 
-  <h4>Détails du Projet</h4>
+    <div class="card mb-1 <%= 'active' if request.path == project_nich_offer_path(@project, @nich) %>">
+      <%= link_to project_nich_offer_path(@project, @nich), data: { turbo: false }, class: 'text-decoration-none text-dark' do %>
+        <div class="card-body">
+          <p>Voir l'Offre</p>
+        </div>
+      <% end %>
+    </div>
 
-  <div class="items-links", >
-    <p><%= link_to 'Voir l\'Avatar', project_nich_avatar_path(@project, @nich), data: { turbo: false } %></p>
-    <p><%= link_to 'Voir l\'Offre', project_nich_offer_path(@project, @nich), data: { turbo: false } %></p>
-    <p><%= link_to 'Résultats d\'Hypothèses', project_nich_hypothesis_result_path(@project, @nich), data: { turbo: false } %></p>
-    <p><%= link_to 'Voir le Message', project_nich_message_path(@project, @nich), data: { turbo: false } %></p>
-    <p><%= link_to 'Voir le Script', project_nich_script_path(@project, @nich, data: { turbo: false }) %></p>
+    <div class="card mb-1 <%= 'active' if request.path == project_nich_hypothesis_result_path(@project, @nich) %>">
+      <%= link_to project_nich_hypothesis_result_path(@project, @nich), data: { turbo: false }, class: 'text-decoration-none text-dark' do %>
+        <div class="card-body">
+          <p>Résultats d'Hypothèses</p>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="card mb-1 <%= 'active' if request.path == project_nich_message_path(@project, @nich) %>">
+      <%= link_to project_nich_message_path(@project, @nich), data: { turbo: false }, class: 'text-decoration-none text-dark' do %>
+        <div class="card-body">
+          <p>Voir le Message</p>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="card mb-4 <%= 'active' if request.path == project_nich_script_path(@project, @nich) %>">
+      <%= link_to project_nich_script_path(@project, @nich), data: { turbo: false }, class: 'text-decoration-none text-dark' do %>
+        <div class="card-body">
+          <p>Voir le Script</p>
+        </div>
+      <% end %>
+    </div>
   </div>
 
-  <%= link_to "Retour à l'accueil", root_path, class: 'btn btn-primary back-button', data: { turbo: false } %>
-  <%= link_to 'prospecter', '#', class: 'btn btn-outline-primary' %>
+  <%= link_to "Retour à l'accueil", root_path, class: 'btn btn-custom mx-3 mt-4', data: { turbo: false } %>
+  <%= link_to 'prospecter', '#', class: 'btn btn-prospection mt-4' %>
 </div>

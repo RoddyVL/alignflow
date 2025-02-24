@@ -1,13 +1,16 @@
 class NichesController < ApplicationController
   before_action :set_project
-  before_action :set_nich, only: %I[select show]
+  before_action :set_nich, only: %i[show]
+  # before_action :set_idea, only: %i[select]
 
   def index
     @niches = @project.niches
+
   end
 
   def show
     @niches = @project.niches
+    @ideas = @nich.ideas
   end
 
   def new
@@ -26,18 +29,18 @@ class NichesController < ApplicationController
   end
 
 
-  def select
-    @nich.update(status: Nich::SELECTED)
-
-    GenerateContentJob.perform_later(@nich.id)
-    sleep 1 # Test pour voir si l'avatar a eu le temps d'être créé
-    redirect_to project_nich_avatar_path(@project, @nich, @nich.avatar)
-  end
+  # Cette méthode est potentiellement inutile, à supprimer après vérification
+  # def select
+  #   @ideas = @nich.ideas
+    # @idea.update(status: 1)
+    # redirect_to project_nich_idea_categories_index_path(@project, @nich, @idea)
+  # end
 
   def generate_ai_data
     @nich = @project.niches.first
     @project.niches.each do |nich|
       puts "start background job"
+      sleep 1
       NichProblemGeneratorJob.perform_later(nich.id)
     end
     redirect_to project_nich_path(@project, @nich)
@@ -54,6 +57,11 @@ class NichesController < ApplicationController
   end
 
   def set_nich
-    @nich = Nich.find(params[:id])
+    @nich = @project.niches.find(params[:id])
   end
+
+
+  # def set_idea
+  #   @idea = @nich.ideas.find(params[:id])
+  # end
 end

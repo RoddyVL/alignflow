@@ -5,8 +5,10 @@
     <div>
       <%= render 'projects/items' %>
     </div>
-    <div id="result_<%= @result.id %>">
-      <%= render 'result', result: @result %>
-    </div>
+    <% if @result %>
+      <div id="result_<%= @result.id %>">
+        <%= render 'result', result: @result %>
+      </div>
+    <% end %>
   </div>
 </div>

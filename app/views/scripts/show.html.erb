@@ -1,13 +1,22 @@
 <%# app/views/scripts/show.html.erb %>
 
-<div id="<%= dom_id(@script) %>">
-  <%= turbo_stream_from "script_#{@script.id}" %>
+<% if @script %>
+  <div id="<%= dom_id(@script) %>">
+    <%= turbo_stream_from "script_#{@script.id}" %>
+    <div class="items-grid">
+      <div>
+        <%= render 'projects/items' %>
+      </div>
+
+      <div id="script_<%= @script.id %>">
+        <%= render 'script', script: @script%>
+      </div>
+    </div>
+  </div>
+<% else %>
   <div class="items-grid">
     <div>
       <%= render 'projects/items' %>
     </div>
-    <div id="script_<%= @script.id %>">
-      <%= render 'script', script: @script%>
-    </div>
   </div>
-</div>
+<% end %>

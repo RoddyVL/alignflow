@@ -1,41 +1,41 @@
 <%# app/views/niches/new.html.erb %>
-
-<h1 class="text-center mb-4">Création d'une nouvelle niche</h1>
-
 <div class="container">
   <div class="row">
+    <h1 class="text-center my-5">Renseignez jusqu'à 5 domaines que vous connaissez ou par lesquelles vous êtes intéressé</h1>
     <div class="col-md-8 offset-md-2">
 
+
       <!-- Affichage du nom du projet -->
-      <h3 class="mb-4">Projet : <%= @project.name %></h3>
+      <%# <h3 class="mb-4"><%= @project.name</h3> %>
 
       <!-- Formulaire de création de niche -->
       <%= simple_form_for [@project, @nich], html: { class: 'needs-validation', novalidate: true } do |f| %>
         <div class="form-group">
-          <%= f.input :name, label: 'Nom de la niche', input_html: { class: 'form-control' } %>
+          <%= f.input :name, label: false, input_html: { class: 'form-control rounded-5 mt-5' } %>
         </div>
         <div class="form-group">
-          <%= f.submit 'Valider', class: 'btn btn-success btn-block' %>
+          <%= f.submit '+', class: 'btn btn-small mb-5' %>
         </div>
       <% end %>
 
       <!-- Affichage des niches existantes pour le projet -->
-      <h4 class="mt-5">Niches existantes pour ce projet :</h4>
       <% if @niches.any? %>
         <ul class="list-group mt-3">
           <% @niches.each do |niche| %>
-            <li class="list-group-item"><%= niche.name %></li>
+            <li class="list-group-item custom"><%= niche.name %></li>
           <% end %>
         </ul>
-      <% else %>
-        <p class="mt-3">Aucune niche existante pour ce projet.</p>
       <% end %>
 
-      <!-- Lien pour générer l'hypothèse de business -->
+      <!-- Lien pour l'étape suivante -->
       <div class="mt-4">
-        <%= link_to "démarrer l'étude de marché", generate_ai_data_project_niches_path(@project), method: :post,
+
+      <% if @niches.any? %>
+           <div class="mt-4">
+            <%= button_to "démarrer l'étude de marché", generate_ai_data_project_niches_path(@project), method: :post,
             data: { turbo_method: :post },
-            class: 'btn btn-primary btn-block' %>
+            class: 'btn btn-custom' %>
+      <% end %>
       </div>
 
     </div>

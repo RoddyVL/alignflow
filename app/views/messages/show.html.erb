@@ -5,7 +5,9 @@
     <%= render 'projects/items' %>
   </div>
   <div>
-    <%= render 'message', message: @message %>
+    <% if @message.present? %>
+      <%= render 'message', message: @message %>
+    <% end %>
   </div>
 
 </div>

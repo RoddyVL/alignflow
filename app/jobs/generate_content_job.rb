@@ -93,7 +93,7 @@ class GenerateContentJob < ApplicationJob
         "result_#{result.id}",
         target: "result_#{result.id}",
         partial: "hypothesis_results/result", locals: { result: result })
-        
+
   #   puts "script fetching"
   #   script.update(question: generate_text(client, "en une phrase présente un business qui aide les personnes de cette niche: #{nich.name}"))
   #   Turbo::StreamsChannel.broadcast_replace_to(

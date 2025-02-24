@@ -16,7 +16,7 @@
 
       <div class="row">
 
-        <% @niches.each do |nich| %>
+        <% @niches.reverse.each do |nich| %>
           <% if nich.project %>
             <h4><%= nich.project.name %></h4>
             <div class="col-md-6 my-2">

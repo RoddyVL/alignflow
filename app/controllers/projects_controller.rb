@@ -12,25 +12,18 @@ class ProjectsController < ApplicationController
     @result = @nich.hypothesis_result
     @message = @nich.message
     @script = @nich.script
-    @category = @nich.ideas.find_by(status: 1).categories.find_by(status: 1)
+    # @category = @nich.ideas.find_by(status: 1).categories.find_by(status: 1)
   end
 
   def create
+    @niches = Nich.where(status: 2)
     @project = Project.new(project_params)
-    @project.user = current_user # Assurez-vous d'associer le projet à l'utilisateur courant
-
-    if @project.valid?
-
-      if @project.save
-        redirect_to  new_project_nich_path(@project), notice: "Projet créée avec succès."
-      else
-        @projects = Project.all
-        flash[:alert] = "Erreur lors de la création du projet."
-        render :index
-      end
-
+    @project.user = current_user
+    if @project.save
+      redirect_to new_project_nich_path(@project), notice: "Projet créé avec succès."
     else
-      flash[:alert] = "Veuillez remplir tous les champs obligatoires."
+      @projects = Project.all
+      flash.now[:alert] = "Erreur lors de la création du projet."
       render :index
     end
   end

@@ -23,7 +23,9 @@
 
             <div class="card mt-3 shadow-sm">
               <div class="card-body">
-                <p class="card-text"><%= avatar.description || '⏳ Génération en cours...' %></p>
+                <% if avatar %>
+                  <p class="card-text"><%= avatar.description.html_safe || '⏳ Génération en cours...' %></p>
+                <% end %>
               </div>
             </div>
           </div>

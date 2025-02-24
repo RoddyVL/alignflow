@@ -1,7 +1,5 @@
 <div class="items-container">
   <div class="items-links">
-    <h1 class='mx-2'><%= @category.name %></h1>
-
     <div class="card mb-1 <%= 'active' if request.path == project_nich_avatar_path(@project, @nich) %>">
       <%= link_to project_nich_avatar_path(@project, @nich), data: { turbo: false }, class: 'text-decoration-none text-dark' do %>
         <div class="card-body">

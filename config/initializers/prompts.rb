@@ -11,7 +11,7 @@ PROMPTS = {
     Copier
     Modifier
     {
-      'description': '[Décris brièvement cet avatar : que fait-il ? Comment passe-t-il sa semaine ? Ses loisirs ? Où s'informe-t-il ? Quel est son revenu ? Son rapport à son travail ? Ses préoccupations ? Quels aspects de sa vie influencent la manière dont on doit lui vendre ce produit ? Quels événements ou expériences l'ont amené à ce point ? Comment perçoit-il ces expériences ? Quels centres d'intérêt en découlent ? Son statut familial et relationnel : est-il marié, célibataire, divorcé ? A-t-il des enfants ? Son cercle familial a-t-il une influence sur sa consommation du produit ? En quoi ce produit répond-il à un besoin, résout-il une douleur ou améliore-t-il sa vie ? Quels sont les éléments déclencheurs qui le poussent à acheter ? Quelles pensées lui traversent l'esprit avant de prendre sa décision ?]',
+      'description': '[Décris brièvement cet avatar : que fait-il ? Comment passe-t-il sa semaine ? Ses loisirs ? Où s'informe-t-il ?<br><br> Quel est son revenu ? Son rapport à son travail ? Ses préoccupations ? Quels aspects de sa vie influencent la manière dont on doit lui vendre ce produit ?<br><br>Quels événements ou expériences l'ont amené à ce point ? Comment perçoit-il ces expériences ? Quels centres d'intérêt en découlent ?<br><br> Son statut familial et relationnel : est-il marié, célibataire, divorcé ? A-t-il des enfants ? Son cercle familial a-t-il une influence sur sa consommation du produit ?<br><br> En quoi ce produit répond-il à un besoin, résout-il une douleur ou améliore-t-il sa vie ?<br><br> Quels sont les éléments déclencheurs qui le poussent à acheter ? Quelles pensées lui traversent l'esprit avant de prendre sa décision ?]',
       'information': {
         'title': '[Titre du poste ou occupation]',
         'location': '[Pays, ville ou zone géographique]',
@@ -75,7 +75,6 @@ PROMPTS = {
     - Ne saute aucune question et veille à ce que chaque élément soit traité de manière précise et pertinente.
 
     ### **Exemple de réponse correcte :**
-    ```html
     <strong>Cette niche possède-t-elle son propre langage/argot ? Et si oui, quels sont quelques-uns des mots clés, phrases et expressions qu'ils utilisent ?</strong><br>
     Oui, cette niche utilise un certain nombre de termes spécifiques à leur domaine. Par exemple, les mots "toiture", "rénovation", "zinguerie" sont couramment utilisés dans leur communication. Certains expressions comme "toit végétalisé" ou "isolation thermique" sont également fréquemment mentionnées, indiquant une spécialisation dans les aspects techniques de la toiture.<br><br>
 

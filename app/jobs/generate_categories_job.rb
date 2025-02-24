@@ -10,7 +10,7 @@ class GenerateCategoriesJob < ApplicationJob
     prompt = "À partir de cette offre :
     '''#{idea.description}'''
 
-    Identifie 2 niches qui utilisent activement ce type de service, en te basant uniquement sur des données réelles et des usages concrets.
+    Identifie 10 niches qui utilisent activement ce type de service, en te basant uniquement sur des données réelles et des usages concrets.
 
     Format de réponse obligatoire :
     Ne donne aucune analyse, explication ou introduction.
@@ -35,10 +35,11 @@ class GenerateCategoriesJob < ApplicationJob
     end
 
     puts "start broadcasting"
+    project = idea.nich.project
     Turbo::StreamsChannel.broadcast_replace_to(
       "idea_#{idea.id}",
       target: "idea_#{idea.id}",
-      partial: "category/categories", locals: { categories: idea.categories, idea: idea })
+      partial: "category/categories", locals: { categories: idea.categories, idea: idea, project: project, nich: idea.nich })
     puts "finish broadcasting"
   end
 

@@ -1,16 +1,21 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-          <%= image_tag('logo.jpg', alt:"logo") %>
-
-          <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %>
-
-        <% else %>
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+    <ul class="navbar-nav me-auto">
+      <% if user_signed_in? %>
+        <%= link_to root_path, class: 'd-flex align-items-center' do %>
+          <%= image_tag('logo', class:'logo') %>
+          <h3 class="ms-2 mb-0">AlignFlow</h3> <!-- ms-2 pour ajouter un peu d'espace à gauche de l'image -->
         <% end %>
-      </ul>
-    </div>
+      <% end %>
+    </ul>
+
+
+    <ul class="navbar-nav ms-auto">
+      <% if user_signed_in? %>
+        <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %>
+      <% else %>
+        <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+      <% end %>
+    </ul>
   </div>
 </div>

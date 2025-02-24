@@ -1,5 +1,5 @@
 .navbar-lewagon {
-  justify-content: left;
+  justify-content: space-between;
   background: #4083ff;
   align-items: stretch;
   display: flex;
@@ -37,4 +37,8 @@
 /* Agrandir l'icône au survol */
 .nav-icon:hover {
   transform: scale(1.2); /* Agrandit l'icône de 20% */
+}
+
+.logo {
+ width: 40px
 }

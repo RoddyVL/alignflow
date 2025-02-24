@@ -19,10 +19,18 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.user = current_user # Assurez-vous d'associer le projet à l'utilisateur courant
 
-    if @project.save
-      redirect_to  new_project_nich_path(@project), notice: "Projet créée avec succès."
+    if @project.valid?
+
+      if @project.save
+        redirect_to  new_project_nich_path(@project), notice: "Projet créée avec succès."
+      else
+        @projects = Project.all
+        flash[:alert] = "Erreur lors de la création du projet."
+        render :index
+      end
+
     else
-      @projects = Project.all
+      flash[:alert] = "Veuillez remplir tous les champs obligatoires."
       render :index
     end
   end

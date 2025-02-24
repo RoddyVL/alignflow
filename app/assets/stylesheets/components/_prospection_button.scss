@@ -1,0 +1,29 @@
+.btn-prospection {
+  background-color: #081131;
+  color: #ffff;
+  text-align: center;
+  font-family: Generalsans, sans-serif;
+  border-radius: 6.25rem;
+  width: 13.5625rem;
+  padding: .9375rem;
+  font-family: Generalsans, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 100%;
+}
+
+.btn-prospection:hover {
+  background-color: #f5f8ff;
+  color: #081131;
+  border-color: #081131;
+  text-align: center;
+  font-family: Generalsans, sans-serif;
+  border-radius: 6.25rem;
+  width: 14.5625rem;
+  padding: .9375rem;
+  font-family: Generalsans, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 100%;
+  transition: all 0.3s ease-in-out;
+}

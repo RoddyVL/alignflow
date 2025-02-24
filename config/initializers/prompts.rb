@@ -103,7 +103,7 @@ PROMPTS = {
 
     2. **Pour toutes les autres questions**, tu réponds en texte normal avec une structure claire, incluant des balises HTML de formatage.
 
-    <table class="table table-dark">
+    <table class="table">
       <thead>
         <tr>
           <th scope="col">Signal</th>
@@ -131,24 +131,6 @@ PROMPTS = {
     réponse<br><br>
 
     <strong>Quel serait un prix juste mais élevé que tu pourrais facturer pour cette offre ?</strong><br>
-    réponse<br><br>
-
-    <strong>Quelle est ta certitude sur ta niche sur une échelle de 1 à 10, avec 1 étant totalement incertain et 10 étant absolument certain ?</strong><br>
-    réponse<br><br>
-
-    <strong>À quel point la situation actuelle de la niche est-elle douloureuse, selon leur point de vue, sur une échelle de 1 à 10, avec 1 étant pas douloureux du tout et 10 étant une douleur excruciante ?</strong><br>
-    réponse<br><br>
-
-    <strong>À quel point le désir d'atteindre leur situation désirée est-il urgent pour cette niche, sur une échelle de 1 à 10, avec 1 étant aucun désir et 10 étant un désir extrême ?</strong><br>
-    réponse<br><br>
-
-    <strong>À quel point est-il complexe d'offrir la solution que tu proposes actuellement, sur une échelle de 1 à 10, avec 1 étant extrêmement complexe et 10 étant simple ?</strong><br>
-    réponse<br><br>
-
-    <strong>À quel point penses-tu qu'il est possible d'atteindre la situation désirée de la niche, sur une échelle de 1 à 10, avec 1 étant pas possible du tout et 10 étant plus que possible ?</strong><br>
-    réponse<br><br>
-
-    <strong>Ajoute tes classements des questions 8 à 12 ci-dessus. Quelle est ta note totale sur 50 ?</strong><br>
     réponse<br><br>
 
     <strong>Quel délai est-ce que tu estimes pour atteindre la situation désirée en jours ?</strong><br>

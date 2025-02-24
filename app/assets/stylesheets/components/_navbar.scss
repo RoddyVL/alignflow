@@ -3,6 +3,7 @@
   background: #4083ff;
   align-items: stretch;
   display: flex;
+  padding: 15px;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -20,4 +21,20 @@
   height: auto;
   padding-top: .15rem;
   padding-bottom: .15rem;
+}
+
+.nav-item {
+  text-align: center;
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.nav-icon {
+  height: 50px;
+  transition: transform 0.3s ease; /* Pour une animation fluide */
+}
+
+/* Agrandir l'icône au survol */
+.nav-icon:hover {
+  transform: scale(1.2); /* Agrandit l'icône de 20% */
 }

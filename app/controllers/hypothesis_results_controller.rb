@@ -4,5 +4,6 @@ class HypothesisResultsController < ApplicationController
     @nich = @project.niches.find_by(status: 2)
     @result = @nich.hypothesis_result
     @results = HypothesisResult.all
+    @category = @nich.ideas.find_by(status: 1).categories.find_by(status: 1)
   end
 end

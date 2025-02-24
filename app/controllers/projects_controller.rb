@@ -12,6 +12,7 @@ class ProjectsController < ApplicationController
     @result = @nich.hypothesis_result
     @message = @nich.message
     @script = @nich.script
+    @category = @nich.ideas.find_by(status: 1).categories.find_by(status: 1)
   end
 
   def create

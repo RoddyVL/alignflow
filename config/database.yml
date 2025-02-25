@@ -78,7 +78,8 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: business_theory_production
-  username: business_theory
-  password: <%= ENV["BUSINESS_THEORY_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+

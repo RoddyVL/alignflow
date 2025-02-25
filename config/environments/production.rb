@@ -68,9 +68,8 @@ Rails.application.configure do
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
-  # Use a real queuing backend for Active Job (and separate queues per environment).
-  config.active_job.queue_adapter = :solid_queue
-  config.solid_queue.connects_to = { database: { writing: :queue } }
+  config.solid_queue.connects_to = { database: { writing: :default, reading: :default } }
+
   # config.active_job.queue_name_prefix = "business_theory_production"
 
   config.action_mailer.perform_caching = false

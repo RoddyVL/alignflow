@@ -9,7 +9,7 @@ class NichProblemGeneratorJob < ApplicationJob
     # On stock les 2 arguments que l'on va utiliser lors de l'appelle à la méthode 'generate_response' dans des variables pour un code plus lisible
     client = OpenAI::Client.new(access_token: ENV["OPENAI_ACCESS_TOKEN"])
     prompt = """
-    A partir de ce centre d'intérêt: '''#{nich.name}''', identifie 10 services en forte demande qui se vendent déjà et dont la croissance continue.
+    A partir de ce centre d'intérêt: '''#{nich.name}''', identifie 1 services en forte demande qui se vendent déjà et dont la croissance continue.
     Base-toi uniquement sur des **marchés en croissance** et des **services réellement vendus**.
     Ne génère **aucune idée aléatoire** ou hypothétique.
 

@@ -3,8 +3,9 @@
   <%= turbo_stream_from dom_id(script) %>
   <div class="card h-100 w-100 shadow-lg">
     <div class="card-body d-flex flex-column">
-
-      <p class="card-text flex-grow-1"><%= script.question || "⏳ Génération en cours..." %></p>
+      <% if script %>
+        <p class="card-text flex-grow-1"><%= script.question&.presence || "⏳ Génération en cours..." %></p>
+      <% end %>
 
     </div>
   </div>

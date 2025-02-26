@@ -10,6 +10,7 @@ class CategoryController < ApplicationController
 
   def select_category
     @category.update(status: 1)
+    puts 'start background job'
     GenerateContentJob.perform_later(@nich)
     redirect_to project_path(@project), notice: "sélectionnée avec succès."
   end
@@ -31,5 +32,5 @@ class CategoryController < ApplicationController
   def set_category
     @category = @idea.categories.find(params[:id])
   end
-  
+
 end

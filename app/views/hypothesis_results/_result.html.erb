@@ -9,7 +9,7 @@
           <div class="card-body">
             <p class="card-text border p-3 rounded bg-light">
               <% if result %>
-                <%= result.answer.html_safe || "⏳ Génération en cours..." %>
+                <%= result.answer.presence&.html_safe || "⏳ Génération en cours..." %>
               <% end %>
             </p>
           </div>

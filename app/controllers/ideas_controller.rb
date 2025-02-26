@@ -1,4 +1,5 @@
 class IdeasController < ApplicationController
+  protect_from_forgery with: :exception
   before_action :set_project
   before_action :set_nich
   before_action :set_idea, only: [:select_idea]

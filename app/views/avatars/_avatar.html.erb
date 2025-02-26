@@ -13,19 +13,19 @@
 
               <!-- Bloc des informations à droite -->
               <div style="margin: 0; line-height: 1.2;">
-                <p><strong>age: </strong> <%= avatar.information['age'] %></p>
-                <p><strong>titre: </strong><%= avatar.information['title'] %></p>
-                <p><strong>location: </strong><%= avatar.information['location'] %></p>
-                <p><strong>education: </strong><%= avatar.information['education'] %></p>
-                <p><strong>accomplissement: </strong><%= avatar.information['accomplishments'] %></p>
+                <% if avatar && avatar.information %>
+                  <p><strong>age: </strong> <%= avatar.information['age'] %></p>
+                  <p><strong>titre: </strong><%= avatar.information['title'] %></p>
+                  <p><strong>location: </strong><%= avatar.information['location'] %></p>
+                  <p><strong>education: </strong><%= avatar.information['education'] %></p>
+                  <p><strong>accomplissement: </strong><%= avatar.information['accomplishments'] %></p>
+                <% end %>
               </div>
             </div>
 
             <div class="card mt-3 shadow-sm">
               <div class="card-body">
-                <% if avatar %>
-                  <p class="card-text"><%= avatar.description.html_safe || '⏳ Génération en cours...' %></p>
-                <% end %>
+                <p class="card-text"><%= avatar&.description.presence || '⏳ Génération en cours...' %></p>
               </div>
             </div>
           </div>

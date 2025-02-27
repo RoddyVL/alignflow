@@ -7,7 +7,8 @@
       <% categories.each do |category| %>
       <div class="col-md-12 col-lg-">
         <%= button_to select_category_project_nich_idea_category_path(project, nich, idea, category),
-                      method: :patch, data: { turbo: false }, class: 'card shadow-sm border-0 rounded btn btn-idea w-100', form: { authenticity_token: true } do %>
+                      method: :patch,
+                      class: 'card shadow-sm border-0 rounded btn btn-idea w-100' do %>
           <div class="card-body text-center">
             <%= category.name || '...' %>
           </div>

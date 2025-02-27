@@ -1,11 +1,21 @@
 <%# app/views/offers/show.html.erb %>
 
-<div class="items-grid">
-    <div>
-      <%= render 'projects/items' %>
-    </div>
-    <div>
-      <%= render 'offer', offer: @offer %>
+<% if browser.device.mobile? %>
+  <div class="mt-2 text-center mb-4">
+    <%= render 'offer', offer: @offer %>
+    <%= link_to 'Retour', project_path, class: 'btn btn-outline-dark mt-5' %> <!-- mt-5 pour plus de top margin -->
+  </div>
+
+<% else %>
+
+  <div class="items-grid">
+      <div>
+        <%= render 'projects/items' %>
+      </div>
+      <div>
+        <%= render 'offer', offer: @offer %>
+      </div>
     </div>
   </div>
-</div>
+
+<% end %>

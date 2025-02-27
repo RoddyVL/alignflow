@@ -6,22 +6,42 @@
       <div class="col-12 d-flex flex-column h-100">
         <div class="card flex-grow-1 w-100 shadow-lg">
           <div class="card-body">
+            <% if browser.device.mobile? %>
 
-            <div class="d-flex align-items-center">
-              <!-- Image Avatar à gauche -->
-              <%= image_tag(asset_path('avatar.jpg'), class:"avatar mb-3 me-3") %>
-
-              <!-- Bloc des informations à droite -->
-              <div style="margin: 0; line-height: 1.2;">
-                <% if avatar && avatar.information %>
-                  <p><strong>age: </strong> <%= avatar.information['age'] %></p>
-                  <p><strong>titre: </strong><%= avatar.information['title'] %></p>
-                  <p><strong>location: </strong><%= avatar.information['location'] %></p>
-                  <p><strong>education: </strong><%= avatar.information['education'] %></p>
-                  <p><strong>accomplissement: </strong><%= avatar.information['accomplishments'] %></p>
-                <% end %>
+                <div class="d-flex align-items-center">
+                <!-- Bloc des informations à droite -->
+                <div style="margin: 0; line-height: 1.2;">
+                <%= image_tag(asset_path('avatar.jpg'), class:"avatar mb-3 me-3") %>
+                  <% if avatar && avatar.information %>
+                    <div class='text-start'>
+                      <p><strong>age: </strong> <%= avatar.information['age'] %></p>
+                      <p><strong>titre: </strong><%= avatar.information['title'] %></p>
+                      <p><strong>location: </strong><%= avatar.information['location'] %></p>
+                      <p><strong>education: </strong><%= avatar.information['education'] %></p>
+                      <p><strong>accomplissement: </strong><%= avatar.information['accomplishments'] %></p>
+                    </div>
+                  <% end %>
+                </div>
               </div>
-            </div>
+
+            <% else %>
+
+              <div class="d-flex align-items-center">
+                <!-- Image Avatar à gauche -->
+                <%= image_tag(asset_path('avatar.jpg'), class:"avatar mb-3 me-3") %>
+
+                <!-- Bloc des informations à droite -->
+                <div style="margin: 0; line-height: 1.2;">
+                  <% if avatar && avatar.information %>
+                    <p><strong>age: </strong> <%= avatar.information['age'] %></p>
+                    <p><strong>titre: </strong><%= avatar.information['title'] %></p>
+                    <p><strong>location: </strong><%= avatar.information['location'] %></p>
+                    <p><strong>education: </strong><%= avatar.information['education'] %></p>
+                    <p><strong>accomplissement: </strong><%= avatar.information['accomplishments'] %></p>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
 
             <div class="card mt-3 shadow-sm">
               <div class="card-body">

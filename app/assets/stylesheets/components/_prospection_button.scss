@@ -27,3 +27,35 @@
   line-height: 100%;
   transition: all 0.3s ease-in-out;
 }
+
+/* Media Queries pour rendre le bouton responsive */
+
+/* Pour les écrans de moins de 768px (tablettes et mobiles) */
+@media (max-width: 768px) {
+  .btn-prospection {
+    width: 11rem;
+    padding: 0.75rem;
+    font-size: 14px;
+  }
+
+  .btn-prospection:hover {
+    width: 11rem;
+    padding: 0.75rem;
+    font-size: 14px;
+  }
+}
+
+/* Pour les écrans de moins de 480px (mobiles) */
+@media (max-width: 480px) {
+  .btn-prospection {
+    width: 6rem;
+    padding: 0.5rem;
+    font-size: 12px;
+  }
+
+  .btn-prospection:hover {
+    width: 6rem;
+    padding: 0.5rem;
+    font-size: 12px;
+  }
+}

@@ -7,26 +7,9 @@ class GenerateCategoriesJob < ApplicationJob
 
     # On créer les variables que l'on va passer à la méthode generate_text ici pour un code plus lisible
     client = OpenAI::Client.new
-    prompt = "À partir de cette offre :
-    '''#{idea.description}'''
+    prompt = "
+    Ceci est un test, répond 'test'
 
-    Identifie 10 niches qui utilisent activement ce type de service, en te basant uniquement sur des données réelles et des usages concrets.
-
-    Format de réponse obligatoire :
-    Ne donne aucune analyse, explication ou introduction.
-
-    Réponds uniquement avec une liste formatée, où chaque niche est sur une seule ligne sous ce format :
-
-    [courte description]
-
-    Utilise un retour à la ligne (\n) uniquement pour séparer chaque niche.
-
-    Ne mets aucun saut de ligne à l'intérieur d'une niche.
-
-    Ne numérote pas la liste et n'ajoute aucun caractère supplémentaire (pas de tirets, ni de puces).
-
-    Exemple de réponse correcte :
-    avocats qui veulent automatiser la création de contrat\nagences immobilières qui veulent automatiser la recherche de biens\nPME qui veulent automatiser la gestion des factures
     """
 
     categories_description = generate_categories(client, prompt)
@@ -36,7 +19,7 @@ class GenerateCategoriesJob < ApplicationJob
 
     puts "start broadcasting"
     project = idea.nich.project
-    Turbo::StreamsChannel.broadcast_replace_to(
+    Turbo::StreamsChannel.broadcast_append_to(
       "idea_#{idea.id}",
       target: "idea_#{idea.id}",
       partial: "category/categories", locals: { categories: idea.categories, idea: idea, project: project, nich: idea.nich })

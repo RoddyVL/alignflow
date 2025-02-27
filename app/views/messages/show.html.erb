@@ -1,13 +1,26 @@
 <%# app/views/messages/show.html.erb %>
+<% if browser.device.mobile? %>
 
-<div class="items-grid">
-  <div>
-    <%= render 'projects/items' %>
-  </div>
-  <div>
+  <div class="text-center mb-4">
     <% if @message.present? %>
       <%= render 'message', message: @message %>
     <% end %>
+      <%= link_to 'Retour', project_path, class: 'btn btn-outline-dark mt-5' %> <!-- mt-5 pour plus de top margin -->
   </div>
 
-</div>
+<% else %>
+
+  <div class="items-grid">
+
+    <div>
+      <%= render 'projects/items' %>
+    </div>
+    <div>
+      <% if @message.present? %>
+        <%= render 'message', message: @message %>
+      <% end %>
+    </div>
+
+  </div>
+
+<% end %>

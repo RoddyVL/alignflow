@@ -1,17 +1,34 @@
  <%# app/views/avatars/show.html.erb %>
-<% if @avatar %>
-  <div class="items-grid">
-    <div>
-      <%= render 'projects/items' %>
-    </div>
-    <div>
+
+<% if @browser.device.mobile? %>
+  <div class="mt-2 text-center mb-4">
+    <% if @avatar %>
       <%= render 'avatar', avatar: @avatar %>
-    </div>
+    <% else %>
+      <p>Vous n'avez pas encore d'avatar</p>
+    <% end %>
+
+    <%= link_to 'Retour', project_path, class: 'btn btn-outline-dark mt-5' %>
   </div>
-  <% else %>
-  <div class="items-grid">
+
+
+<% else %>
+
+  <% if @avatar %>
+    <div class="items-grid">
       <div>
         <%= render 'projects/items' %>
       </div>
+      <div>
+        <%= render 'avatar', avatar: @avatar %>
+      </div>
     </div>
+    <% else %>
+    <div class="items-grid">
+        <div>
+          <%= render 'projects/items' %>
+        </div>
+      </div>
+  <% end %>
+
 <% end %>

@@ -19,7 +19,7 @@
     <div class="card mb-1 <%= 'active' if request.path == project_nich_hypothesis_result_path(@project, @nich) %>">
       <%= link_to project_nich_hypothesis_result_path(@project, @nich), data: { turbo: false }, class: 'text-decoration-none text-dark' do %>
         <div class="card-body">
-          <p>Résultats d'Hypothèses</p>
+          <p>Hypothèses</p>
         </div>
       <% end %>
     </div>
@@ -34,6 +34,5 @@
 
   </div>
 
-  <%= link_to "Retour à l'accueil", root_path, class: 'btn btn-custom mx-3 mt-4', data: { turbo: false } %>
-  <%= link_to 'prospecter', '#', class: 'btn btn-prospection mt-4' %>
+  <%= link_to "accueil", root_path, class: 'btn btn-custom mx-3 mt-4', data: { turbo: false } %>
 </div>

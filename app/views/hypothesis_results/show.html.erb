@@ -1,5 +1,16 @@
 <%# app/views/hypothesis_results/show.html.erb %>
+<% if browser.device.mobile? %>
 
+  <div class="mt-2 text-center mb-4">
+    <% if @result %>
+      <div id="result_<%= @result.id %>">
+        <%= render 'result', result: @result %>
+      </div>
+    <% end %>
+      <%= link_to 'Retour', project_path, class: 'btn btn-outline-dark mt-5' %> <!-- mt-5 pour plus de top margin -->
+  </div>
+
+<% else %>
 
   <div class="items-grid">
     <div>
@@ -11,4 +22,5 @@
       </div>
     <% end %>
   </div>
-</div>
+
+<% end %>

@@ -53,7 +53,7 @@ gem "sassc-rails"
 gem "ruby-openai"
 gem "solid_cable"
 gem "solid_queue"
-
+gem 'browser'
 
 group :development, :test do
   gem "dotenv-rails"

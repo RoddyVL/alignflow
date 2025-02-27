@@ -24,33 +24,7 @@ h4 {
   color: #0c1f4d
 }
 
-.btn-custom {
-  background-color: #4083ff;
-  color: #ffff;
-  text-align: center;
-  border-radius: 6.25rem;
-  width: 13.5625rem;
-  padding: .9375rem;
-  font-family: Generalsans, sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 100%;
-}
 
-.btn-custom:hover {
-  background-color: #f5f8ff;
-  color: #081131;
-  border-color: #4083ff;
-  text-align: center;
-  border-radius: 6.25rem;
-  width: 14.5625rem;
-  padding: .9375rem;
-  font-family: Generalsans, sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 100%;
-  transition: all 0.3s ease-in-out;
-}
 
 .btn-small {
   background-color: #4083ff;
@@ -120,4 +94,92 @@ h4 {
   font-size: 15px;
   font-weight: 500;
   line-height: 100%;
+}
+
+.btn-custom {
+  background-color: #4083ff;
+  color: #ffff;
+  text-align: center;
+  border-radius: 6.25rem;
+  width: 13.5625rem;
+  padding: .9375rem;
+  font-family: Generalsans, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 100%;
+}
+
+.btn-custom:hover {
+  background-color: #f5f8ff;
+  color: #081131;
+  border-color: #4083ff;
+  text-align: center;
+  border-radius: 6.25rem;
+  width: 14.5625rem;
+  padding: .9375rem;
+  font-family: Generalsans, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 100%;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Media Queries pour rendre le bouton responsive */
+
+/* Pour les écrans de moins de 768px (tablettes et mobiles) */
+@media (max-width: 768px) {
+  .btn-custom {
+    width: 11rem;
+    padding: 0.75rem;
+    font-size: 14px;
+  }
+
+  .btn-custom:hover {
+    width: 12rem;
+    padding: 0.75rem;
+    font-size: 14px;
+  }
+}
+
+/* Pour les écrans de moins de 480px (mobiles) */
+@media (max-width: 480px) {
+  .btn-custom {
+    width: 6rem;
+    padding: 0.5rem;
+    font-size: 12px;
+  }
+
+  .btn-custom:hover {
+    width: 10rem;
+    padding: 0.5rem;
+    font-size: 12px;
+  }
+}
+
+.btn-home {
+  background-color: #4083ff;
+  color: #ffff;
+  text-align: center;
+  border-radius: 6.25rem;
+  width: 13.5625rem;
+  padding: .9375rem;
+  font-family: Generalsans, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 100%;
+}
+
+.btn-home:hover {
+  background-color: #f5f8ff;
+  color: #081131;
+  border-color: #4083ff;
+  text-align: center;
+  border-radius: 6.25rem;
+  width: 14.5625rem;
+  padding: .9375rem;
+  font-family: Generalsans, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 100%;
+  transition: all 0.3s ease-in-out;
 }

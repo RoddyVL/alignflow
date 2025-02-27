@@ -7,9 +7,8 @@ class GenerateCategoriesJob < ApplicationJob
 
     # On créer les variables que l'on va passer à la méthode generate_text ici pour un code plus lisible
     client = OpenAI::Client.new
-    prompt = """
-    À partir de cette offre :
-    ***#{idea.description}***
+    prompt = "À partir de cette offre :
+    '''#{idea.description}'''
 
     Identifie 10 niches qui utilisent activement ce type de service, en te basant uniquement sur des données réelles et des usages concrets.
 
@@ -33,16 +32,11 @@ class GenerateCategoriesJob < ApplicationJob
     categories_description = generate_categories(client, prompt)
     categories_description.split("\n").each do |category|
       Category.create(name: category, idea: idea) unless category.strip.blank?
-  
-
-    categories_description = generate_categories(client, prompt)
-    categories_description.split("\n").each do |category|
-      Category.create(name: category, idea: idea) unless category.strip.blank?
     end
 
     puts "start broadcasting"
     project = idea.nich.project
-    Turbo::StreamsChannel.broadcast_append_to(
+    Turbo::StreamsChannel.broadcast_replace_to(
       "idea_#{idea.id}",
       target: "idea_#{idea.id}",
       partial: "category/categories", locals: { categories: idea.categories, idea: idea, project: project, nich: idea.nich })

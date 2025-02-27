@@ -5,21 +5,18 @@
   <%= turbo_stream_from dom_id(nich) %>
 
   <% if ideas&.any? %>
-  <h1 class='my-4'>Voici <%= ideas.length %> idées de produits rentable à lancer</h1>
+    <h1 class='my-4'>Voici <%= ideas.length %> idées de produits rentables à lancer</h1>
 
     <% ideas.each do |idea| %>
       <div class="mb-3">
         <div class="card">
           <%= button_to select_idea_project_nich_idea_path(project, nich, idea),
             class: 'btn btn-idea w-100',
-            method: :patch,  data: { turbo: false },
-
-            form: { authenticity_token: true } do %>
+            method: :patch do %>
             <div class="card-body">
               <p class="card-text"><%= idea.description || '⏳ Génération en cours...' %></p>
             </div>
-            <% end %>
-
+          <% end %>
         </div>
       </div>
     <% end %>

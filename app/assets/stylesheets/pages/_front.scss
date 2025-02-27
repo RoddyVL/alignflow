@@ -93,3 +93,31 @@ h4 {
 .card-header {
   background-color: #0c1f4d;
 }
+
+.btn-login {
+  background-color: #f5f8ff;
+  color: #081131;
+  border-color: #4083ff;
+  text-align: center;
+  border-radius: 6.25rem;
+  width: 7.5625rem;
+  padding: .9375rem;
+  font-family: Generalsans, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 100%;
+}
+
+.btn-login:hover {
+  transition: all 0.3s ease-in-out;
+  background-color: #4083ff;
+  color: #ffff;
+  text-align: center;
+  border-radius: 6.25rem;
+  width: 7.5625rem;
+  padding: .9375rem;
+  font-family: Generalsans, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 100%;
+}

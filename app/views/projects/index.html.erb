@@ -16,11 +16,11 @@
 
       <div class="row">
 
-        <% @niches.reverse.each do |nich| %>
-          <% if nich.project %>
-            <h4><%= nich.project.name %></h4>
+        <% @projects.reverse.each do |project| %>
+          <% if project %>
+            <h4><%= project.name %></h4>
             <div class="col-md-6 my-2">
-              <%= link_to project_path(nich.project), class: 'btn btn-link p-0' do %>
+              <%= link_to project_path(project), class: 'btn btn-link p-0' do %>
                 <%= image_tag('project.png', alt: 'Project Icon', class: 'btn btn-project') %>
               <% end %>
             </div>

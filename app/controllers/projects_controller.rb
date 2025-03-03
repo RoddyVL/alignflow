@@ -30,6 +30,12 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def destroy
+    @project = current_user.projects
+    @projects.destroy
+    redirect_to projects_path, notice: "Projet supprimé avec succès."
+  end
+
   private
 
 def project_params

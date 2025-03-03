@@ -54,6 +54,11 @@ gem "ruby-openai"
 gem "solid_cable"
 gem "solid_queue"
 gem 'browser'
+gem 'rspec-rails'
+gem 'factory_bot_rails'
+gem 'shoulda-matchers', '~> 6.0'
+gem 'webdrivers' # Pour gérer les drivers de navigateur
+gem 'faker'
 
 group :development, :test do
   gem "dotenv-rails"

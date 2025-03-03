@@ -5,6 +5,7 @@ PROMPTS = {
 
   Format de réponse :
   Retourne uniquement un JSON valide avec la structure suivante, et dans lequel la description doit être structurée avec des balises <br><br> afin de séparer chaque idée ou section :
+  Ne rajoute aucun texte avént ou après quelque soit le genre
 
   {
     'description': '[Décris brièvement cet avatar : que fait-il ? Comment passe-t-il sa semaine ? Ses loisirs ? Où s'informe-t-il ?<br>Quel est son revenu ? Son rapport à son travail ? Ses préoccupations ? Quels aspects de sa vie influencent la manière dont on doit lui vendre ce produit ?<br>Quels événements ou expériences l'ont amené à ce point ? Comment perçoit-il ces expériences ? Quels centres d'intérêt en découlent ?<br>Son statut familial et relationnel : est-il marié, célibataire, divorcé ? A-t-il des enfants ? Son cercle familial a-t-il une influence sur sa consommation du produit ?<br>En quoi ce produit répond-il à un besoin, résout-il une douleur ou améliore-t-il sa vie ?<br>Quels sont les éléments déclencheurs qui le poussent à acheter ? Quelles pensées lui traversent l'esprit avant de prendre sa décision ? (lorsque tu répondras à ces questions, tu devras inclure des balises <br> pour séparer les différentes sections de manière claire)]',

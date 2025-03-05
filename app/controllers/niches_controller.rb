@@ -7,7 +7,6 @@ class NichesController < ApplicationController
 
   def index
     @niches = @project.niches
-
   end
 
   def show

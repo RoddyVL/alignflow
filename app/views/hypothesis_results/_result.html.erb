@@ -7,7 +7,6 @@
       <div class="card-body d-flex flex-column">
         <div class="card mb-3">
           <div class="card-body">
-            <p class="card-text border p-3 rounded bg-light">
               <% if result %>
                 <%= result.answer.presence&.html_safe || "⏳ Génération en cours..." %>
               <% end %>

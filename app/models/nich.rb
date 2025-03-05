@@ -1,5 +1,6 @@
 class Nich < ApplicationRecord
   belongs_to :project
+  has_one :user, through: :project
   has_one :avatar, dependent: :destroy
   has_one :offer, dependent: :destroy
   has_one :hypothesis_result, dependent: :destroy
@@ -8,7 +9,7 @@ class Nich < ApplicationRecord
   has_many :ai_responses, dependent: :destroy
   has_many :ideas, dependent: :destroy
 
-  validates :name, presence: true
-
+  validates :name, presence: true, uniqueness: { scope: :project_id }
+  validates :status,  presence: true
   enum ai_status: { pending: 0, processing: 1, completed: 2, failed: 3 }
 end

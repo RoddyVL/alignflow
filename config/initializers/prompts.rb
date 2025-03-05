@@ -1,33 +1,23 @@
 PROMPTS = {
   avatar: <<~TEXT,
-   Je suis en train de créer une nouvelle offre: %category
-    et j'ai besoin de comprendre mon client idéal.
-    Ton travail est de m'aider en définissant un avatar client précis, basé sur des données réelles.
+  Je suis en train de créer une nouvelle offre: %category
+  Ton travail est de m'aider en définissant un avatar client précis, basé sur des données réelles. ( base toi uniquement sur des données réelles et vérifiable)
 
-    Format de réponse :
-    Retourne uniquement un JSON valide avec la structure suivante :
+  Format de réponse :
+  Retourne uniquement un JSON valide avec la structure suivante, et dans lequel la description doit être structurée avec des balises <br><br> afin de séparer chaque idée ou section :
+  Ne rajoute aucun texte avént ou après quelque soit le genre
 
-    json
-    Copier
-    Modifier
-    {
-      'description': '[Décris brièvement cet avatar : que fait-il ? Comment passe-t-il sa semaine ? Ses loisirs ? Où s'informe-t-il ?<br><br> Quel est son revenu ? Son rapport à son travail ? Ses préoccupations ? Quels aspects de sa vie influencent la manière dont on doit lui vendre ce produit ?<br><br>Quels événements ou expériences l'ont amené à ce point ? Comment perçoit-il ces expériences ? Quels centres d'intérêt en découlent ?<br><br> Son statut familial et relationnel : est-il marié, célibataire, divorcé ? A-t-il des enfants ? Son cercle familial a-t-il une influence sur sa consommation du produit ?<br><br> En quoi ce produit répond-il à un besoin, résout-il une douleur ou améliore-t-il sa vie ?<br><br> Quels sont les éléments déclencheurs qui le poussent à acheter ? Quelles pensées lui traversent l'esprit avant de prendre sa décision ?]',
-      'information': {
-        'title': '[Titre du poste ou occupation]',
-        'location': '[Pays, ville ou zone géographique]',
-        'age': '[Âge en nombre]',
-        'education': '[Niveau d'éducation]',
-        'accomplishments': '[Principales réalisations]'
-      }
+  {
+    'description': '[Décris brièvement cet avatar : que fait-il ? Comment passe-t-il sa semaine ? Ses loisirs ? Où s'informe-t-il ?<br>Quel est son revenu ? Son rapport à son travail ? Ses préoccupations ? Quels aspects de sa vie influencent la manière dont on doit lui vendre ce produit ?<br>Quels événements ou expériences l'ont amené à ce point ? Comment perçoit-il ces expériences ? Quels centres d'intérêt en découlent ?<br>Son statut familial et relationnel : est-il marié, célibataire, divorcé ? A-t-il des enfants ? Son cercle familial a-t-il une influence sur sa consommation du produit ?<br>En quoi ce produit répond-il à un besoin, résout-il une douleur ou améliore-t-il sa vie ?<br>Quels sont les éléments déclencheurs qui le poussent à acheter ? Quelles pensées lui traversent l'esprit avant de prendre sa décision ? (lorsque tu répondras à ces questions, tu devras inclure des balises <br> pour séparer les différentes sections de manière claire)]',
+    'information': {
+      'title': '[Titre du poste ou occupation]',
+      'location': '[Pays, ville ou zone géographique]',
+      'age': '[Âge en nombre]',
+      'education': '[Niveau d'éducation]',
+      'accomplishments': '[Principales réalisations]'
     }
-    Contraintes :
-
-    Ne donne aucune analyse ou explication. Retourne uniquement la réponse au format JSON.
-    Ne change pas la structure du JSON. Chaque élément doit être une chaîne de texte ou un nombre.
-    Baser la réponse uniquement sur des données réelles et vérifiables, pas d'hypothèses.
-    Aucune mise en forme supplémentaire (pas de retour à la ligne dans les valeurs JSON).
-
-  TEXT
+  }
+    TEXT
 
   offer: <<~TEXT,
     À partir de cette niche: %category
@@ -86,7 +76,6 @@ PROMPTS = {
     Les questions à traiter :
     <strong>Cette niche possède-t-elle son propre langage/argot ? Et si oui, quels sont quelques-uns des mots clés, phrases et expressions qu'ils utilisent ?</strong>
     <strong>Définis ton message en une ou deux phrases en utilisant l' “Équation du message” : Equation: Je aide [niche] à [obtenir un résultat] en [offre].</strong>
-    <strong>Évalue ton Message-Hypothèse sur une échelle de 1 à 10 pour voir à quel point il résonne avec tes prospects avant tout retour. 1 étant sans résonance et 10 étant une résonance parfaitement claire.</strong>
     ⚡ Contraintes strictes :
     ✅ Utilise uniquement des données réalistes et vérifiables. Pas de spéculations ou de généralisations.
     ✅ Retourne la réponse en utilisant des balises HTML : Les questions en <strong> et les réponses avec des retours à la ligne (<br>) pour améliorer la lisibilité.

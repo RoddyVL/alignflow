@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
   def index
-    @niches = Nich.where(status: 2)
+    @user = current_user
+    @projects = current_user.projects
+    # @niches = @user.project.niches.where(status: 2)
     @project = Project.new
   end
 
@@ -26,6 +28,12 @@ class ProjectsController < ApplicationController
       flash.now[:alert] = "Erreur lors de la création du projet."
       render :index
     end
+  end
+
+  def destroy
+    @project = current_user.projects
+    @projects.destroy
+    redirect_to projects_path, notice: "Projet supprimé avec succès."
   end
 
   private

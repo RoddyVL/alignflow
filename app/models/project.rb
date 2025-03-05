@@ -3,5 +3,5 @@ class Project < ApplicationRecord
   has_many :niches, dependent: :destroy
   has_many :skills
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: { scope: :user_id }
 end

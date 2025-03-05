@@ -15,7 +15,7 @@ RSpec.describe Nich, type: :model do
 
   it "it's not valid with duplicate name within the same project" do
     nich = build(:nich, name: "Nich", project: project1)
-    expect(nich).not_to be_valid
+    expect(nich).to be_invalid
     expect(nich.errors[:name]).to include("has already been taken")
   end
 
@@ -29,6 +29,7 @@ RSpec.describe Nich, type: :model do
     expect(nich.status).to eq(0)
   end
 end
+
 
 # Je cherche à vérifier que un projet ne peut pas avoir
 # 2 fois le même nom de nich
